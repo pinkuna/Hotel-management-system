@@ -1,0 +1,20 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.vl {
+    border-left: 1px solid #6a7ace;
+    margin: 0 15px;
+    height: 20px;
+}
+
+.avatar {
+    border: 1px solid #6a7ace;
+    object-fit: cover;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.m {
+    margin-left: 5px;
+}
