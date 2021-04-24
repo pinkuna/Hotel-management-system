@@ -13,6 +13,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProgressComponent } from './progress/progress.component';
 import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { MatListModule } from '@angular/material/list';
     AppComponent,
     HeaderComponent,
     SideNavComponent,
-    ProgressComponent
+    ProgressComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
