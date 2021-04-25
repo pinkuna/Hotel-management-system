@@ -3,10 +3,10 @@
             <mat-icon>menu</mat-icon>
         </button></div>
 
-    <button mat-button>
+    <button mat-button [routerLink]="['/home']">
         <span class="mat-h1">HSM</span>
     </button>
-    <div *ngIf="!mobileQueryMax"><button mat-button>News</button>
+    <div *ngIf="!mobileQueryMax"><button mat-button [routerLink]="['/news']">News</button>
         <button mat-button>Booking</button>
         <button mat-button [matMenuTriggerFor]="menu">Service</button>
         <mat-menu #menu="matMenu">

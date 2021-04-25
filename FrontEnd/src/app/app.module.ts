@@ -15,6 +15,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './home/home.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     SideNavComponent,
     ProgressComponent,
-    HomeComponent
+    HomeComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
