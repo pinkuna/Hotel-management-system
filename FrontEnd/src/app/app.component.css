@@ -1,7 +1,7 @@
-mat-sidenav {
+.mat-sidenav {
     width: 200px;
 }
 
-.content-wrapper {
-    padding: 2.25rem;
+.content {
+    padding: 1rem;
 }
