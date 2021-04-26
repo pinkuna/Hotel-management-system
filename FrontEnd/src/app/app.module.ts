@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NewsComponent } from './news/news.component';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
