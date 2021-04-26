@@ -11,8 +11,8 @@
         <button mat-button [matMenuTriggerFor]="menu">Service</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>ค่าน้ำ/ไฟ</button>
-            <button mat-menu-item>สัญญาเช่า</button>
-            <button mat-menu-item>แจ้งปัญหา</button>
+            <button mat-menu-item [routerLink]="['serve/agreement']">สัญญาเช่า</button>
+            <button mat-menu-item [routerLink]="['serve/report']">แจ้งปัญหา</button>
             <button mat-menu-item>แจ้งออก</button>
         </mat-menu>
         <button mat-button>Pay</button>
@@ -23,6 +23,4 @@
     <button mat-button>Login</button>
     <div class="vl"></div>
     <button mat-button>Sign In</button>
-
-
 </mat-toolbar>

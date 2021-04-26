@@ -17,6 +17,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { MatCardModule } from '@angular/material/card';
+import { ReportComponent } from './serve/report/report.component';
+import { AgreementComponent } from './serve/agreement/agreement.component';
+
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -26,7 +33,9 @@ import { MatCardModule } from '@angular/material/card';
     SideNavComponent,
     ProgressComponent,
     HomeComponent,
-    NewsComponent
+    NewsComponent,
+    ReportComponent,
+    AgreementComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,10 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
