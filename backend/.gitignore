@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # dependencies
 /node_modules
-=======
-/node_modules
-
 /images
->>>>>>> apiwat
+package-lock.json
