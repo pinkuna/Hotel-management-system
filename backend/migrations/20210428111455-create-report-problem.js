@@ -23,11 +23,11 @@ module.exports = {
       Requre: {
         type: Sequelize.STRING
       },
-      created_at: {
+      created: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updated: {
         allowNull: false,
         type: Sequelize.DATE
       }

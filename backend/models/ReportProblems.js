@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ReportProblems',
-    underscored: true,
-    createdAt: "created_at", // เพิ่มเข้ามา
-    updatedAt: "updated_at",  //เพิ่มเข้ามา
+    //underscored: true,
+    createdAt: "created", // เพิ่มเข้ามา
+    updatedAt: "updated",  //เพิ่มเข้ามา
   });
   return ReportProblems;
 };

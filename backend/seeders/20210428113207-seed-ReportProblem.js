@@ -12,8 +12,8 @@ module.exports = {
      * }], {});
     */
     data.map(item => {   //colum ที่ทำให้รู้ว่าเข้ามาและออกไปเวลาไหนบ้าง
-      item.created_at = new Date()
-      item.updated_at = new Date()
+      item.created = new Date()
+      item.updated = new Date()
     })
 
     await queryInterface.bulkInsert('ReportProblems', data, //[{   // เราจะ insreat เข้าไปที่ table ไหน // ใส่ data เข้าไปแทนค่าที่ comment
