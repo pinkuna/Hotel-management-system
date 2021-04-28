@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { CheckoutComponent } from './serve/checkout/checkout.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -58,7 +59,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

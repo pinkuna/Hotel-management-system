@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Report } from 'src/app/models/Reports.model';
+import { checkout } from 'src/app/models/Checkout.model';
 
 @Component({
   selector: 'app-checkout',
@@ -13,19 +13,20 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSubmit(reportForm: NgForm) {
-    if (reportForm.invalid) {
-      //return console.log(`Error`);
+  onCheckout(CheckoutForm: NgForm) {
+    if (CheckoutForm.invalid) {
+      //return console.log(`Error`); 
       ; 
     }
 
-    const values = reportForm.value;
-    let reports = new Report();
-    reports.roomNum = values.roomNum;
-    reports.name = values.name;
-    reports.phonNum = values.phonNum;
-    reports.theProblems = values.theProblems;
-    alert(JSON.stringify(reports))
+    const values = CheckoutForm.value;
+    let checkOut = new checkout();
+    checkOut.roomNum = values.roomNum;
+    checkOut.name = values.name;
+    checkOut.phonNum = values.phonNum;
+    checkOut.date = values.date;
+
+    alert(typeof(checkOut.roomNum))
   }
 
 }
