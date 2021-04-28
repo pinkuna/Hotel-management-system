@@ -1,22 +1,18 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Report } from 'src/app/models/Reports.model';
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
 })
-
-export class ReportComponent implements OnInit {
-
-  selectedValue: string;
+export class CheckoutComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
   onSubmit(reportForm: NgForm) {
     if (reportForm.invalid) {
       //return console.log(`Error`);
