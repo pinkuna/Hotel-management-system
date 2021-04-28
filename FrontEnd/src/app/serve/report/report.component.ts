@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Report } from 'src/app/models/Reports.model';
 
@@ -7,16 +7,20 @@ import { Report } from 'src/app/models/Reports.model';
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
+
 export class ReportComponent implements OnInit {
+
+  selectedValue: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(reportForm: NgForm){
-    if(reportForm.invalid){
-      return;
+  onSubmit(reportForm: NgForm) {
+    if (reportForm.invalid) {
+      //return console.log(`Error`);
+      ; 
     }
 
     const values = reportForm.value;
@@ -24,8 +28,8 @@ export class ReportComponent implements OnInit {
     reports.roomNum = values.roomNum;
     reports.name = values.name;
     reports.phonNum = values.phonNum;
-    reports.requests = values.requests;
     reports.theProblems = values.theProblems;
+    alert(JSON.stringify(reports))
 
   }
 
