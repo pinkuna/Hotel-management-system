@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookingComponent } from './booking/booking.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
+import { PayComponent } from './pay/pay.component';
 import { AgreementComponent } from './serve/agreement/agreement.component';
 import { CheckoutComponent } from './serve/checkout/checkout.component';
 import { ReportComponent } from './serve/report/report.component';
@@ -21,6 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'serve/checkout', component: CheckoutComponent
+  },
+  {
+    path: 'booking', component: BookingComponent
+  },
+  {
+    path: 'pay', component: PayComponent
   }
 ];
 

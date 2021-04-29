@@ -4,4 +4,5 @@ export class Report {
     phonNum: number;
     theProblems: string;
     Requre: string;
+    title : string;
 }

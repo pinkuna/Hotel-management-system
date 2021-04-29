@@ -28,6 +28,8 @@ import { FormsModule } from '@angular/forms';
 import { CheckoutComponent } from './serve/checkout/checkout.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { BookingComponent } from './booking/booking.component';
+import { PayComponent } from './pay/pay.component';
 
 
 
@@ -41,7 +43,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     NewsComponent,
     ReportComponent,
     AgreementComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    BookingComponent,
+    PayComponent
   ],
   imports: [
     BrowserModule,

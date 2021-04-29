@@ -1,9 +1,9 @@
 <mat-card>
-    <form #CheckoutForm="ngForm" (submit)="onCheckout(CheckoutForm)">
+    <form #reportForm="ngForm" (submit)="onSubmit(reportForm)">
         <mat-card-header>
             <mat-card-title class="d-flex justify-content-between aling-items-center">
-                <span>Check Out</span>
-                <button mat-raised-button color="primary" type="submit">Confirm</button>
+                <span>Booking</span>
+                <button mat-raised-button color="primary" type="submit">Book!</button>
             </mat-card-title>
         </mat-card-header>
 
@@ -11,20 +11,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>Room Number</mat-label>
-                        <input ngModel name="roomNum" matInput type="number" required>
+                        <mat-label>Full Name</mat-label>
+                        <input ngModel name="name" matInput required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>Full Name</mat-label>
-                        <input ngModel name="name" matInput required>
+                        <mat-label>ID Card</mat-label>
+                        <input ngModel name="idcard" matInput type="number" required>
                     </mat-form-field>
                 </div>
-            </div>
 
-            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input ngModel type="email" matInput name="email" placeholder="Ex. pat@example.com">
+                    </mat-form-field>
+                </div>
+
                 <div class="col-md-6">
                     <mat-form-field class="w-100">
                         <mat-label>Phone Number</mat-label>
@@ -33,7 +38,7 @@
                     </mat-form-field>
                 </div>
 
-                <div class="col-md-6 ">
+                <div class="col-md-6">
                     <mat-form-field class="example-full-width">
                         <mat-label>Choose Check Out a date</mat-label>
                         <input ngModel matInput name="date" [matDatepicker]="picker">
@@ -42,6 +47,7 @@
                     </mat-form-field>
                 </div>
             </div>
+
         </mat-card-content>
     </form>
 
