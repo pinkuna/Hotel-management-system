@@ -67,17 +67,6 @@ router.post('/product/new', (req, res) => {
             return res.status(500).json({ message: err })
         }
 
-
-        //const name = req.body.name //ใน postman จะมีการส่งค่ามาเป็น name : apiwat //ตัวแปร name = apiwat
-        //const stock = req.body.stock
-        //const price = req.body.price
-        //const data ={
-        //name,stock,price
-        // }
-
-        //const name1= [1,2,3,4]
-        //const name2= [1,5]
-        //const name3 = [...name1, name2] // name3 = [1,2,3,4,1,5]
         const data = {
             ...req.body,
             //image:req.file ? req.file.fieldname : undefined // ถ้ามีการ requir มาแบบ file image จะมีค่าเป็นชื่อไฟล์นั้น //ถ้ามาเป็น text จะได้ค่า null

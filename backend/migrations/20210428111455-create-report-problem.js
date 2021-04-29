@@ -23,6 +23,9 @@ module.exports = {
       Requre: {
         type: Sequelize.STRING
       },
+      title: {
+        type: Sequelize.STRING
+      },
       created: {
         allowNull: false,
         type: Sequelize.DATE
