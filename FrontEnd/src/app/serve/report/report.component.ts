@@ -29,8 +29,8 @@ export class ReportComponent implements OnInit {
     reports.name = values.name;
     reports.phonNum = values.phonNum;
     reports.theProblems = values.theProblems;
+    reports.title = values.title;
     alert(JSON.stringify(reports))
-
   }
 
 }
