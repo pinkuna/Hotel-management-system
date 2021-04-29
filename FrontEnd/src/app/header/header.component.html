@@ -7,15 +7,15 @@
         <span class="mat-h1">Dragon Hotel</span>
     </button>
     <div *ngIf="!mobileQueryMax"><button mat-button [routerLink]="['/news']">News</button>
-        <button mat-button>Booking</button>
+        <button mat-button [routerLink]="['booking']">Booking</button>
         <button mat-button [matMenuTriggerFor]="menu">Service</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>ค่าน้ำ/ไฟ</button>
             <button mat-menu-item [routerLink]="['serve/agreement']">สัญญาเช่า</button>
             <button mat-menu-item [routerLink]="['serve/report']">แจ้งปัญหา</button>
-            <button mat-menu-item>แจ้งออก</button>
+            <button mat-menu-item [routerLink]="['serve/checkout']">แจ้งออก</button>
         </mat-menu>
-        <button mat-button>Pay</button>
+        <button mat-button [routerLink]="['pay']">Pay</button>
         <button mat-button>About</button>
     </div>
 

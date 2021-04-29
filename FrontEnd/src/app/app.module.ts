@@ -24,7 +24,13 @@ import { AgreementComponent } from './serve/agreement/agreement.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { CheckoutComponent } from './serve/checkout/checkout.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BookingComponent } from './booking/booking.component';
+import { PayComponent } from './pay/pay.component';
+
 
 
 @NgModule({
@@ -36,7 +42,10 @@ import { FormsModule }   from '@angular/forms';
     HomeComponent,
     NewsComponent,
     ReportComponent,
-    AgreementComponent
+    AgreementComponent,
+    CheckoutComponent,
+    BookingComponent,
+    PayComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,9 @@ import { FormsModule }   from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

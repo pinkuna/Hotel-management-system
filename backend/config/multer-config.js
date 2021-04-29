@@ -38,3 +38,4 @@ module.exports = multerConfig = {  //ตั้งชื่อว่า multerCon
     },
     keyUpload: 'photo'  //รูปจะมาในตัวแปรที่ชื่อว่า photo
 }
+
