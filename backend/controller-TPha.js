@@ -1,2 +1,5 @@
-console.log("First commit");
+const express = require('express')
+const router = express.Router()
 
+
+module.exports = router

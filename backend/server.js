@@ -6,6 +6,7 @@ app.use(express.urlencoded({extended : false}))
 
 
 app.use(require('./controller-apiwat'))
+app.use(require('./controller-TPha'))
 
 
 const PORT = process.env.PORT||1150 
