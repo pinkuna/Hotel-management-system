@@ -1,29 +1,29 @@
 const express = require('express')
 const router = express.Router()
 
-const multerConfig = require('./config/multer-config')  //จะเป็นตัวแปรที่ชื่อว่า photo ถูก return มาจาก multer_config
-//ต้องติดตั้ง multer ก่อนใช้เพื่อการ uplode file โดยการยิง require แบบ body form data //สามารถเลือกดักจับแบบแต่ละ app ได้
+const multerConfig = require('./config/multer-config')  
 const multer = require('multer')
-const upload = multer(multerConfig.config).single(multerConfig.keyUpload)  // ใส่ multerConfig.config ถ้าไม่ใส่จะรับได้แค่ text // keyUpload เอาตัวปรจาก multer_config
-// upload = multer() เมื่อเป็น function เปล่า เวลาเรียกใช้ต้องใส่ upload.non() ถ้าไม่ก็แค่ upload เวลาเรียกใช้
+const upload = multer(multerConfig.config).single(multerConfig.keyUpload)  
 
-const db = require('./models')   //การใช้ file database บนไฟล์นี้ เรียกใช้งานผ่าน file index (การติดต่อฐานข้อมูล)
+const db = require('./models')   
 
-// การที่ใช้ router จัดการเส้นทางต้องเปลี่ยน app เป็น router
 
-//การใช้ order
-router.get('/product', async (req, res) => {   //ถ้าไม่เติม async await จะไม่สามารถเรียกใช้ฐานข้อมูลหน้าเว็บได้ // await is run asynconuch
-    const result = await db.ReportProblems.findAll({  //เอาคำว่า Products มาจากไฟล์ ที่อยู่ใน models --> Products คือการเรียกใช้ฐานข้อมูล
+router.get('/product', async (req, res) => {       //     การ
+    if (req.session.loggedin) {
+    const result = await db.ReportProblems.findAll({  
         order: [
             ['id', 'DESC'] //'DESC' จากมากไปน้อย
         ],
         //attributes: ['name', 'id'] //การใส่ค่าข้อมูลแค่ที่ต้องการ
     });
     res.json(result)  // result เป็นแบบ json การส่งธรรมดาไม่ได้ 
+    }  else {//if 
+         res.send('plaers login')
+    }
 });
-
 // การใช้ where
-router.get('/product/try/:number', async (req, res) => {   // ทำเหมือนด้านบนแต่ใช้ try
+
+router.get('/product/try/:number', async (req, res) => {   
     try {
         const result = await db.ReportProblems.findOne({  //ที่ findAll สามารถโยนค่า paramiter แบบ object ได้ สามารถจัดการการแสดงผลของฐานข้อมูล
             where: {  //ต้องเป็นลักษณะ object {}
@@ -74,7 +74,7 @@ router.post('/product/new', (req, res) => {
 
         }
         try {
-            const product = await db.ReportProblems.create(data)  //สร้างข้อมูลลง database
+            const product = await db.Bookings.create(data)  //สร้างข้อมูลลง database
             res.status(201).json(product)  //201 คือการสร้างข้อมูลลงฐาน database ถูกต้อง
         } catch (error) {
             res.status(500).json({ message: error.message })
@@ -133,7 +133,6 @@ function updateProduct(req, res, product) {  //เอาเนี้อ code ข
         }
         const data = {
             ...req.body,
-            //image:req.file ? req.file.fieldname : undefined // ถ้ามีการ requir มาแบบ file image จะมีค่าเป็นชื่อไฟล์นั้น //ถ้ามาเป็น text จะได้ค่า null
             image: req.file ? req.file.filename : undefined // เปลี่ยนจาก fieldname เป็น filename //จะได้ชื่อแปลกๆยาวๆ
 
         }
