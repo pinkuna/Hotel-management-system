@@ -1,0 +1,32 @@
+<mat-card>
+    <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+        <mat-card-header>
+            <mat-card-title class="d-flex justify-content-between aling-items-center">
+                <span>Sing In</span>
+                <button mat-raised-button color="primary" type="submit">Sing In</button>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="p-3">
+            <div class="w-100">
+                <div class="col">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input ngModel name="username" matInput required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="w-100">
+                <div class="col">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input ngModel name="password" matInput required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+        </mat-card-content>
+    </form>
+</mat-card>
