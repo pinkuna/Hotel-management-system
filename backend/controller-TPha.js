@@ -3,3 +3,7 @@ const router = express.Router()
 
 
 module.exports = router
+
+// Register
+// Log in
+// rent room
