@@ -30,6 +30,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BookingComponent } from './booking/booking.component';
 import { PayComponent } from './pay/pay.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 
 
 
@@ -45,7 +48,9 @@ import { PayComponent } from './pay/pay.component';
     AgreementComponent,
     CheckoutComponent,
     BookingComponent,
-    PayComponent
+    PayComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

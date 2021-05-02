@@ -1,5 +1,4 @@
 export class Booking {
-    roomNum: number;
     name: string;
     phonNum: number;
     idcard: number;
