@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { login } from '../models/login.model';
 
 @Component({
@@ -9,7 +9,12 @@ import { login } from '../models/login.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  eye: boolean
+
+  constructor() {
+
+    
+   }
 
   ngOnInit(): void {
   }
@@ -17,7 +22,7 @@ export class LoginComponent implements OnInit {
   onSubmit(loginForm: NgForm) {
     if (loginForm.invalid) {
       //return console.log(`Error`);
-      ; 
+      ;
     }
 
     const values = loginForm.value;
@@ -26,5 +31,12 @@ export class LoginComponent implements OnInit {
     Login.password = values.password;
     alert(JSON.stringify(Login))
   }
+
+  onClick(){
+    this.eye = !this.eye
+    console.log(this.eye);
+    
+  }
+
 
 }

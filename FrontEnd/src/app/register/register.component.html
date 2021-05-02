@@ -1,9 +1,9 @@
 <mat-card>
-    <form #registerForm="ngForm" (submit)="onSubmit(registerForm)">
+    <form #registerForm="ngForm">
         <mat-card-header>
             <mat-card-title class="d-flex justify-content-between aling-items-center">
                 <span>Register</span>
-                <button mat-raised-button color="primary" type="submit">Submit</button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit(registerForm)">Submit</button>
             </mat-card-title>
         </mat-card-header>
 
@@ -11,27 +11,39 @@
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>Full Name</mat-label>
+                        <mat-label>Name</mat-label>
                         <input ngModel name="Usename" matInput required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>ID Card</mat-label>
-                        <input ngModel name="idcard" type="number" matInput required>
+                        <mat-label>Surname</mat-label>
+                        <input ngModel name="Usesurname" matInput required>
                     </mat-form-field>
                 </div>
+
+
 
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>ID Card</mat-label>
+                        <input ngModel name="idcard" type="number" matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input ngModel name="email" matInput required>
                     </mat-form-field>
                 </div>
+
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Phone Num</mat-label>
@@ -39,21 +51,46 @@
                         <input ngModel name="phoneNum" type="number" matInput required>
                     </mat-form-field>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Username</mat-label>
                         <input ngModel name="username" matInput required>
                     </mat-form-field>
                 </div>
-                <div class="col-md-6">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-between">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input ngModel name="password" matInput required>
+                        <span matSuffix>
+                            <button (click)="onClick()" mat-icon-button
+                                aria-label="Example icon-button with a heart icon">
+                                <mat-icon *ngIf="eye">visibility</mat-icon>
+                                <mat-icon *ngIf="!eye">visibility_off</mat-icon>
+                            </button></span>
+                        <input ngModel name="password" [type]="eye ? 'text' : 'password'" matInput required>
+
+                        <!-- <span class="material-icons">visibility</span> -->
                     </mat-form-field>
                 </div>
+
+                <div class="col-md-6 d-flex justify-content-between">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Repeat your password</mat-label>
+                        <span matSuffix>
+                            <button (click)="onClick()" mat-icon-button
+                                aria-label="Example icon-button with a heart icon">
+                                <mat-icon *ngIf="eye">visibility</mat-icon>
+                                <mat-icon *ngIf="!eye">visibility_off</mat-icon>
+                            </button></span>
+                        <input ngModel name="repassword" [type]="eye ? 'text' : 'password'" matInput required>
+
+                        <!-- <span class="material-icons">visibility</span> -->
+                    </mat-form-field>
+                </div>
+
             </div>
 
             <mat-form-field appearance="fill" class="w-100">
