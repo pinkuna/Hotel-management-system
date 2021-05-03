@@ -6,7 +6,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-// middle ware  ต้องเรียงลำดับ
+// middle ware  
 app.use(cors())  //all 
 app.use(express.json()) 
 app.use(express.urlencoded({extended : false})) 
@@ -27,9 +27,9 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/', function(request, response){
-    response.send(request.body.username)
-});
+//app.get('/', function(request, response){
+    //response.send(request.body.username)
+//});
 
 app.post('/login', function(request, response){
     var username = request.body.username;
@@ -39,30 +39,31 @@ app.post('/login', function(request, response){
             if (result.length > 0){
                 request.session.loggedin = true;
                 request.session.username = username;
-                response.redirect('/home');
+                response.redirect('/');
             } else{
                 request.session.loggedin = false;
-                response.send('inconnect username and password')
+                response.status(404).redirect('/login');
             }
             response.end();
         });
     } else{
         request.session.loggedin = false;
-        response.send('plears enter Username and password');
+        response.send('please enter Username and password');
         response.end();
     }
 })
 
-app.get('/home',function(request, response){
-    if (request.session.loggedin){
-        response.send('wellcomback  ' + request.session.username+'!');
-    } else {
-        response.send('please login')
-    }
-    response.end(); 
-});
+//app.get('/home',function(request, response){
+    //if (request.session.loggedin){
+       // response.send('wellcomback  ' + request.session.username+'!');
+   // } else {
+   //     response.send('please login')
+   // }
+   // response.end(); 
+//});
 
 app.use(require('./controller-apiwat'))
+
 
 
 const PORT = process.env.PORT||1150
