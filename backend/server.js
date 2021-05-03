@@ -27,9 +27,9 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-//app.get('/', function(request, response){
-    //response.send(request.body.username)
-//});
+app.get('/', function(request, response){
+    response.redirect('/login')
+});
 
 app.post('/login', function(request, response){
     var username = request.body.username;
@@ -39,7 +39,7 @@ app.post('/login', function(request, response){
             if (result.length > 0){
                 request.session.loggedin = true;
                 request.session.username = username;
-                response.redirect('/');
+                response.status(200).redirect('/');
             } else{
                 request.session.loggedin = false;
                 response.status(404).redirect('/login');
