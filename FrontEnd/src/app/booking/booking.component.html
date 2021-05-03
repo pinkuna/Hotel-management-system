@@ -41,9 +41,10 @@
                 <div class="col-md-6">
                     <mat-form-field class="example-full-width">
                         <mat-label>Choose Check In a date</mat-label>
-                        <input ngModel matInput name="date" [matDatepicker]="picker">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input ngModel matInput name="date" type="date" required>
+                        <!-- <input ngModel matInput name="date" [matDatepicker]="picker"> -->
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker> -->
                     </mat-form-field>
                 </div>
             </div>

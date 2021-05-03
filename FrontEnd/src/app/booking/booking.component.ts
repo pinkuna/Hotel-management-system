@@ -27,6 +27,7 @@ export class BookingComponent implements OnInit {
     booking.idcard = values.idcard;
     booking.email = values.email;
     booking.phonNum = values.phonNum;
+    booking.date = values.date;
     alert(JSON.stringify(booking))
   }
 }
