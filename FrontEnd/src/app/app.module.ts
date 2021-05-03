@@ -32,6 +32,7 @@ import { BookingComponent } from './booking/booking.component';
 import { PayComponent } from './pay/pay.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -50,7 +51,8 @@ import { RegisterComponent } from './register/register.component';
     BookingComponent,
     PayComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
