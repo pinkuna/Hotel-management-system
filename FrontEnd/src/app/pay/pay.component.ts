@@ -1,16 +1,13 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Report } from 'src/app/models/Reports.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-pay',
+  templateUrl: './pay.component.html',
+  styleUrls: ['./pay.component.css']
 })
-
-export class ReportComponent implements OnInit {
-
-  selectedValue: string;
+export class PayComponent implements OnInit {
 
   constructor() { }
 

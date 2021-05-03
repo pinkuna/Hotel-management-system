@@ -1,26 +1,27 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="example-spacer">
     <div (click)="onClickNavToggle()"><button *ngIf="mobileQueryMax" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button></div>
 
     <button mat-button [routerLink]="['/home']">
-        <span class="mat-h1">Dragon Hotel</span>
+        <span class="mat-h1 font-header">Dragon Hotel</span>
     </button>
-    <div *ngIf="!mobileQueryMax"><button mat-button [routerLink]="['/news']">News</button>
-        <button mat-button>Booking</button>
-        <button mat-button [matMenuTriggerFor]="menu">Service</button>
+    <div *ngIf="!mobileQueryMax">
+        <button class="font-menu" mat-button [routerLink]="['/news']">News</button>
+        <button class="font-menu" mat-button [routerLink]="['booking']">Booking</button>
+        <button class="font-menu" mat-button [matMenuTriggerFor]="menu">Service</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>ค่าน้ำ/ไฟ</button>
-            <button mat-menu-item [routerLink]="['serve/agreement']">สัญญาเช่า</button>
-            <button mat-menu-item [routerLink]="['serve/report']">แจ้งปัญหา</button>
-            <button mat-menu-item>แจ้งออก</button>
+            <button class="font-menu" mat-menu-item>ค่าน้ำ/ไฟ</button>
+            <button class="font-menu" mat-menu-item [routerLink]="['serve/agreement']">สัญญาเช่า</button>
+            <button class="font-menu" mat-menu-item [routerLink]="['serve/report']">แจ้งปัญหา</button>
+            <button class="font-menu" mat-menu-item [routerLink]="['serve/checkout']">แจ้งออก</button>
         </mat-menu>
-        <button mat-button>Pay</button>
-        <button mat-button>About</button>
+        <button class="font-menu" mat-button [routerLink]="['pay']">Pay</button>
+        <button class="font-menu" mat-button>About</button>
     </div>
 
     <span class="flex-fill"></span>
-    <button mat-button>Login</button>
+    <button mat-button class="font" [routerLink]="['login']">Sign In</button>
     <div class="vl"></div>
-    <button mat-button>Sign In</button>
+    <button mat-button class="font" [routerLink]="['register']">Register</button>
 </mat-toolbar>

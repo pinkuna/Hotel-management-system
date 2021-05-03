@@ -1,3 +1,4 @@
+# dependencies
 /node_modules
-
 /images
+package-lock.json
