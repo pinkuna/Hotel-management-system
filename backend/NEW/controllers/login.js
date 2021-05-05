@@ -10,8 +10,7 @@
 const express = require('express')
 const router = express.Router()
 
-const pg = require('pg-pool')
-const pool = new pg(config);
+const pg = require('pg')
 const pool = new pg.Pool({
     user: 'gwkbzslh',
     host: 'arjuna.db.elephantsql.com',
