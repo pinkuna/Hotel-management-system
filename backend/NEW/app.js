@@ -1,6 +1,7 @@
 const express = require('express')
+var session = require('express-session');
 const app = express()
-const PORT = process.env.PORT || 6543
+const PORT = process.env.PORT || 8004
 
 // const bodyParser = require('body-parser')
 const path = require('path')
@@ -8,6 +9,15 @@ const path = require('path')
 // middle ware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+    // cookie: {
+    //     maxAge: 30 * 60 * 1000
+    // },
+}));
 
 // Import Controllers
 const bookingcon = require('./controllers/booking')
@@ -17,7 +27,7 @@ const registercon = require('./controllers/register')
 const reportcon = require('./controllers/report')
 
 // Controllers
-// app.use('/api/booking', bookingcon)
+app.use('/api/booking', bookingcon)
 // app.use('/api/checkout', checkoutcon)
 app.use('/api/login', logincon)
 app.use('/api/register', registercon)
