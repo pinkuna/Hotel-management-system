@@ -57,19 +57,13 @@ router.post("/", (request, response) => {
       });
     });
     response.status(201);
+    response.end();
   } else {
     response.send("please login");
     //response.redirect('/api/login/');
+    response.end();
   }
 });
-
-// examples
-// router.post('/booking/in', (req, res) => {
-//     console.log(req)
-//     console.log(req.body)
-//     console.log(req.body.email)
-//     res.status(201).json(req.body)
-// })
 
 // Export
 module.exports = router;

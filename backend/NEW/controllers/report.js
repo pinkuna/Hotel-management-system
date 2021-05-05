@@ -48,9 +48,11 @@ router.post("/", (request, response) => {
       });
     });
     response.status(201);
+    response.end();
   } else {
     response.send("please login");
     //response.redirect('/api/login/');
+    response.end();
   }
 });
 module.exports = router;
