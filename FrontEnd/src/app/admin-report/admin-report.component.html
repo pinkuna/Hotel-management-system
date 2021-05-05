@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8 mt-3 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="w-100 table-striped table-hover">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> name </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="phonNum">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> phone number </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.phonNum}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="roomNum">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> room number </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.roomNum}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="theProblems">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> Problems </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.theProblems}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Requre">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> Requre </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.Requre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase"> title </th>
+            <td mat-cell *matCellDef="let baba"> {{baba.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Action </th>
+            <td mat-cell *matCellDef="let baba" class="text-center">
+                <button mat-icon-button>
+                    <mat-icon class="material-icons-outlined">done</mat-icon>
+                </button>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
