@@ -19,7 +19,7 @@ const reportcon = require('./controllers/report')
 // Controllers
 // app.use('/api/booking', bookingcon)
 // app.use('/api/checkout', checkoutcon)
-// app.use('/api/login', logincon)
+app.use('/api/login', logincon)
 app.use('/api/register', registercon)
 // app.use('/api/report', reportcon)
 
