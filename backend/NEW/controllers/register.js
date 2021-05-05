@@ -15,14 +15,14 @@
 const express = require('express')
 const router = express.Router()
 
-const pg = require('pg')
-const pool = new pg.Pool({
-    user: 'gwkbzslh',
-    host: 'arjuna.db.elephantsql.com',
-    database: 'gwkbzslh',
-    password: 'OQMGhyGqQmymJUzq_EFOeQcLBAFfQqSN',
-    port: 5432
-})
+// const pg = require('pg')
+// const pool = new pg.Pool({
+//     user: 'gwkbzslh',
+//     host: 'arjuna.db.elephantsql.com',
+//     database: 'gwkbzslh',
+//     password: 'OQMGhyGqQmymJUzq_EFOeQcLBAFfQqSN',
+//     port: 5432
+// })
 
 router.post('/', (req, res) => {
     let insert = {
