@@ -32,6 +32,11 @@ import { BookingComponent } from './booking/booking.component';
 import { PayComponent } from './pay/pay.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
+import { AdminBookingComponent } from './admin-booking/admin-booking.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
+import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
 
 
 
@@ -50,7 +55,11 @@ import { RegisterComponent } from './register/register.component';
     BookingComponent,
     PayComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    AdminBookingComponent,
+    AdminReportComponent,
+    AdminCheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +78,8 @@ import { RegisterComponent } from './register/register.component';
     MatSelectModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

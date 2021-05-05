@@ -6,6 +6,6 @@ export class register {
     Usename: string;
     idcard: number;
     phonNum: number;
-    email: string;
+    email: any;
     address : string;
 }

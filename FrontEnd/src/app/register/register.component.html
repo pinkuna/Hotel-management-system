@@ -2,8 +2,8 @@
     <form #registerForm="ngForm">
         <mat-card-header>
             <mat-card-title class="d-flex justify-content-between aling-items-center">
-                <span>Register</span>
-                <button mat-raised-button color="primary" type="submit" (click)="onSubmit(registerForm)">Submit</button>
+                <span>Sing In</span>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit(registerForm)">Sing In</button>
             </mat-card-title>
         </mat-card-header>
 
@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input ngModel name="email" matInput required>
+                        <input ngModel name="email" type="email" matInput required>
                     </mat-form-field>
                 </div>
 
