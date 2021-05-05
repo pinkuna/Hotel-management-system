@@ -57,6 +57,7 @@ app.post('/login', function(request, response){
     //if (request.session.loggedin){
        // response.send('wellcomback  ' + request.session.username+'!');
    // } else {
+
    //     response.send('please login')
    // }
    // response.end(); 
