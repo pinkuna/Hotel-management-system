@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { register } from '../models/register.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,7 @@ import { register } from '../models/register.model';
 export class RegisterComponent implements OnInit {
   eye: boolean
 
-  constructor() { }
+  constructor(private networkUserservice: NetworkUserService, private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +21,7 @@ export class RegisterComponent implements OnInit {
       //return console.log(`Error`);
       ;
     }
-
+    
     const values = registerForm.value;
     let Register = new register();
     Register.username = values.username;
@@ -33,6 +35,17 @@ export class RegisterComponent implements OnInit {
     Register.email = values.email;
 
     alert(JSON.stringify(Register))
+
+    this.networkUserservice.postRegister(Register).subscribe(
+      data => {
+        this.location.back()
+      },
+      error =>{
+
+      }
+    )
+
+    
   }
   onClick() {
     this.eye = !this.eye
