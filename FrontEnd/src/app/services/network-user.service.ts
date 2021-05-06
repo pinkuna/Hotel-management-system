@@ -9,29 +9,26 @@ import { register, registerRequire } from '../models/register.model';
 export class NetworkUserService {
   constructor(private httpClient: HttpClient) {}
 
-  postRegister(Register: register): Observable<registerRequire> {
-    return this.httpClient.post<registerRequire>(
-      'http://localhost:8004/api/register',
-      this.makeFormData(Register)
-    );
+  constructor(private httpClient: HttpClient) { }
+
+  postRegister(Register: register): Observable<registerRequire>{
+    return this.httpClient.post<registerRequire>('http://localhost:8004/api/register',this.makeFormData(Register))
+    
+
   }
 
-  makeFormData(Register: register): FormData {
-    let formData = new FormData();
-    formData.append('username', Register.username);
-    formData.append('Usesurname', Register.Usesurname);
-    formData.append('password', Register.password);
-    formData.append('repassword', Register.repassword);
-    formData.append('Usename', Register.Usename);
-    formData.append('idcard', `${Register.idcard}`);
-    formData.append('phonNum', `${Register.phonNum}`);
-    formData.append('email', Register.email);
-    formData.append('address', Register.address);
-
-    let fdata = new FormData();
-    console.log(Register.username);
-    console.log(formData);
-    console.log(JSON.stringify(formData));
+  makeFormData(Register: register): FormData{
+    const formData = new FormData()
+    formData.append('username',Register.username)
+    formData.append('Usesurname',Register.Usesurname)
+    formData.append('password',Register.password)
+    formData.append('repassword',Register.repassword)
+    formData.append('Usename',Register.Usename)
+    formData.append('idcard',`${Register.idcard}`)
+    formData.append('phonNum',`${Register.phonNum}`)
+    formData.append('email',Register.email)
+    formData.append('address',Register.address)
+  
     return formData;
   }
 }

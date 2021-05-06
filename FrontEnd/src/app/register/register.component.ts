@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
-      //return console.log(`Error`);
+      return;
     }
 
     const values = registerForm.value;
@@ -41,8 +41,10 @@ export class RegisterComponent implements OnInit {
       (data) => {
         this.location.back();
       },
-      (error) => {
-        // alert(error.error.message);
+      error =>{
+        // console.log(error.error.massage)
+        
+        
       }
     );
   }
