@@ -18,8 +18,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
-      //return console.log(`Error`);
-      ;
+      return;
     }
     
     const values = registerForm.value;
@@ -41,7 +40,9 @@ export class RegisterComponent implements OnInit {
         this.location.back()
       },
       error =>{
-
+        // console.log(error.error.massage)
+        
+        
       }
     )
 

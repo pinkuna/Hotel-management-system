@@ -11,7 +11,8 @@ export class NetworkUserService {
   constructor(private httpClient: HttpClient) { }
 
   postRegister(Register: register): Observable<registerRequire>{
-    return this.httpClient.post<registerRequire>('http://localhost:1150/register',this.makeFormData(Register))
+    return this.httpClient.post<registerRequire>('http://localhost:8004/api/register',this.makeFormData(Register))
+    
 
   }
 
@@ -26,7 +27,7 @@ export class NetworkUserService {
     formData.append('phonNum',`${Register.phonNum}`)
     formData.append('email',Register.email)
     formData.append('address',Register.address)
-
+  
     return formData;
   }
 }
