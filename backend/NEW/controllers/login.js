@@ -29,15 +29,16 @@ router.post("/", function (request, response) {
       }
       client.query(queryMessage, function (err, result) {
         const data = result.rows;
+        client.end();
         if (data.length > 0) {
           request.session.loggedin = true;
           request.session.username = username;
           request.session.userid = data[0].id;
-          response.send("login completed");
+          response.status(200).json({status: 'success', data: 'login completed'});
           //response.status(200).redirect('/home');
         } else {
           request.session.loggedin = false;
-          response.send("login invalid");
+          response.status(400).json({status: 'failed', data: 'username or password invalid'});
           //response.status(200).redirect('/login');
         }
         response.end();
@@ -45,7 +46,7 @@ router.post("/", function (request, response) {
     });
   } else {
     request.session.loggedin = false;
-    response.send("please enter Username and password");
+    response.status(400).json({status: 'failed', data: 'please enter Username and password'});
     response.end();
   }
 });
