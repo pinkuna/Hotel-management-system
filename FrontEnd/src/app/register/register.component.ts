@@ -7,21 +7,22 @@ import { NetworkUserService } from '../services/network-user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  eye: boolean
+  eye: boolean;
 
-  constructor(private networkUserservice: NetworkUserService, private location: Location) { }
+  constructor(
+    private networkUserservice: NetworkUserService,
+    private location: Location
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   onSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
       //return console.log(`Error`);
-      ;
     }
-    
+
     const values = registerForm.value;
     let Register = new register();
     Register.username = values.username;
@@ -34,23 +35,19 @@ export class RegisterComponent implements OnInit {
     Register.address = values.address;
     Register.email = values.email;
 
-    alert(JSON.stringify(Register))
+    alert(JSON.stringify(Register));
 
     this.networkUserservice.postRegister(Register).subscribe(
-      data => {
-        this.location.back()
+      (data) => {
+        this.location.back();
       },
-      error =>{
-
+      (error) => {
+        // alert(error.error.message);
       }
-    )
-
-    
+    );
   }
   onClick() {
-    this.eye = !this.eye
+    this.eye = !this.eye;
     console.log(this.eye);
-
   }
-
 }

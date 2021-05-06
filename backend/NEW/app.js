@@ -2,6 +2,7 @@ const express = require('express')
 var session = require('express-session');
 const app = express()
 const PORT = process.env.PORT || 8004
+const cors = require('cors')
 
 // const bodyParser = require('body-parser')
 const path = require('path')
@@ -18,6 +19,7 @@ const pool = new pg.Pool({
 // middle ware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())  //all 
 
 
 // Import Controllers

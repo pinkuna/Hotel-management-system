@@ -25,6 +25,7 @@ const pool = new pg.Pool({
 })
 
 router.post('/', (req, res) => {
+    console.log(req)
     let insert = {
         text: `insert into Register(   
             username,
