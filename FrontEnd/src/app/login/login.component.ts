@@ -30,11 +30,13 @@ export class LoginComponent implements OnInit {
     let Login = new login();
     Login.username = values.username;
     Login.password = values.password;
+    alert(JSON.stringify(Login))
 
 
     this.networkUserservice.postlogin(Login).subscribe(
       data => {
-        console.log(data);
+        console.log(`res : ${data}`);
+        alert(JSON.stringify(Login))
       },
       error => {
 
