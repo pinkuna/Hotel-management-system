@@ -8,6 +8,7 @@
 
 const express = require("express");
 const router = express.Router();
+const bcrypt = require('bcryptjs')
 
 const pg = require("pg");
 const pool = new pg.Pool({
@@ -18,38 +19,79 @@ const pool = new pg.Pool({
     port: 5432,
 });
 
-router.post("/", function(request, response) {
+// router.post("/", function(request, response) {
+//     var username = request.body.username;
+//     var password = request.body.password;
+//     if (username && password) {
+//         pool.connect(function(err, client, done) {
+//             const queryMessage = `SELECT * FROM register WHERE username = '${username}' AND password = '${password}'`;
+//             if (err) {
+//                 return console.error("connection error", err);
+//             }
+//             client.query(queryMessage, function(err, result) {
+//                 const data = result.rows;
+//                 client.end();
+//                 if (data.length > 0) {
+//                     request.session.loggedin = true;
+//                     request.session.username = username;
+//                     request.session.userid = data[0].id;
+//                     response.status(200).json({ status: 'success', data: 'login completed' });
+//                     //response.status(200).redirect('/home');
+//                 } else {
+//                     request.session.loggedin = false;
+//                     response.status(200).json({ status: 'failed', data: 'username or password invalid' });
+//                     //response.status(200).redirect('/login');
+//                 }
+//                 response.end();
+//             });
+//         });
+//     } else {
+//         request.session.loggedin = false;
+//         response.status(200).json({ status: 'failed', data: 'please enter Username and password' });
+//         response.end();
+//     }
+// });
+
+
+router.post("/", (request, response) => {
     var username = request.body.username;
     var password = request.body.password;
     if (username && password) {
-        pool.connect(function(err, client, done) {
-            const queryMessage = `SELECT * FROM register WHERE username = '${username}' AND password = '${password}'`;
+        pool.connect((err, client, done) => {
+            const queryMessage = `SELECT id,username,password FROM register WHERE username = '${username}'`;
             if (err) {
                 return console.error("connection error", err);
             }
-            client.query(queryMessage, function(err, result) {
-                const data = result.rows;
-                client.end();
-                if (data.length > 0) {
-                    request.session.loggedin = true;
-                    request.session.username = username;
-                    request.session.userid = data[0].id;
-                    response.status(200).json({ status: 'success', data: 'login completed' });
-                    //response.status(200).redirect('/home');
+            client.query(queryMessage, (err, result) => {
+                let data = result.rows
+                client.end()
+                // let condition = false
+                if (data.length == 0) {
+                    response.status(200).json({ status: 'failed', data: 'Please Register or Invalid username' })
                 } else {
-                    request.session.loggedin = false;
-                    response.status(400).json({ status: 'failed', data: 'username or password invalid' });
-                    //response.status(200).redirect('/login');
+                    const condition = bcrypt.compareSync(password, data[0].password)
+                    if (condition) {
+                        request.session.loggedin = true;
+                        request.session.username = username;
+                        request.session.userid = data[0].id;
+                        response.status(200).json({ status: 'success', data: 'login completed' });
+                        //response.status(200).redirect('/home');
+                    } else {
+                        request.session.loggedin = false;
+                        response.status(200).json({ status: 'failed', data: 'password invalid' });
+                        //response.status(200).redirect('/login');
+                    }
                 }
                 response.end();
             });
         });
     } else {
         request.session.loggedin = false;
-        response.status(400).json({ status: 'failed', data: 'please enter Username and password' });
+        response.status(200).json({ status: 'failed', data: 'please enter Username and password' });
         response.end();
     }
 });
+
 
 // Export module
 module.exports = router;

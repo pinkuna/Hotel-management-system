@@ -3,7 +3,7 @@ var session = require('express-session');
 const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8004
-const cors = require('cors')
+
 
 // const bodyParser = require('body-parser')
 const path = require('path')
