@@ -5,7 +5,7 @@ export class register {
     repassword: string;
     Usename: string;
     idcard: number;
-    phonNum: number;
+    phonNum: string;
     email: any;
     address: string;
 }

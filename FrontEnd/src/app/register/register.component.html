@@ -47,9 +47,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>Phone Num</mat-label>
+                        <mat-label>Phone Number</mat-label>
                         <span matPrefix>+66 &nbsp;</span>
-                        <input ngModel name="phoneNum" type="number" matInput required>
+                        <input ngModel name="phonNum" type="number" matInput required>
                     </mat-form-field>
                 </div>
                 <div class="col-md-6">
@@ -71,7 +71,7 @@
                                 <mat-icon *ngIf="eye">visibility</mat-icon>
                                 <mat-icon *ngIf="!eye">visibility_off</mat-icon>
                             </button></span>
-                        <input ngModel name="password" [type]="eye ? 'text' : 'password'" matInput required>
+                        <input [(ngModel)]="valuePassword" name="password" [type]="eye ? 'text' : 'password'" matInput required>
 
                         <!-- <span class="material-icons">visibility</span> -->
                     </mat-form-field>
@@ -86,7 +86,7 @@
                                 <mat-icon *ngIf="eye">visibility</mat-icon>
                                 <mat-icon *ngIf="!eye">visibility_off</mat-icon>
                             </button></span>
-                        <input ngModel name="repassword" [type]="eye ? 'text' : 'password'" matInput required>
+                        <input [(ngModel)]="valueRepassword" name="repassword" [type]="eye ? 'text' : 'password'" matInput required>
 
                         <!-- <span class="material-icons">visibility</span> -->
                     </mat-form-field>

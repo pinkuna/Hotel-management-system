@@ -13,6 +13,11 @@ export class BookingComponent implements OnInit {
 
   constructor(private networkUserservice: NetworkUserService) { }
 
+  valueName: string = 'Jetniphan'
+  valueIDcard: string = '1234567890123'
+  valuePhone: number = 123456789
+  valueEmial: string = 'jeni8399@gmail.com'
+
   ngOnInit(): void {
   }
 
@@ -31,17 +36,23 @@ export class BookingComponent implements OnInit {
     booking.date = values.date;
     booking.roomNum = values.roomNum;
 
-    this.networkUserservice.postbooking(booking).subscribe(
-      data => {
-        console.log(data.status);
-        if (data.status == 'success') {
-          alert(data.data)
-          window.location.href = '/'
-        } else {
-          alert(data.data)
-        }
-      },
-      error => {
-      })
+    if (booking.idcard.length === 13 && booking.phonNum.toString().length === 9) {
+      this.networkUserservice.postbooking(booking).subscribe(
+        data => {
+          console.log(data.status);
+          if (data.status == 'success') {
+            alert(data.data)
+            window.location.href = '/'
+          } else {
+            alert(data.data)
+          }
+        },
+        error => {
+        })
+    } else {
+      alert(`Form incorrect`)
+    }
+
+
   }
 }

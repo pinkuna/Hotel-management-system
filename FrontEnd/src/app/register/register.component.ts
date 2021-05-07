@@ -10,17 +10,22 @@ import { NetworkUserService } from '../services/network-user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   eye: boolean
+
+  valuePassword = ''
+  valueRepassword = ''
 
   constructor(private networkUserservice: NetworkUserService, private location: Location) { }
 
   ngOnInit(): void {
   }
+
+
   onSubmit(registerForm: NgForm) {
     if (registerForm.invalid) {
       return;
     }
-
     const values = registerForm.value;
     let Register = new register();
     Register.username = values.username;
@@ -33,21 +38,31 @@ export class RegisterComponent implements OnInit {
     Register.address = values.address;
     Register.email = values.email;
 
-    //alert(JSON.stringify(Register))
 
-    this.networkUserservice.postRegister(Register).subscribe(
-      data => {
-        if (data.status == 'success') {
-          alert(`ลงทะเบียนเสร็จสื้้น`)
-          window.location.href = '/login'
-        } else {
-          alert(data.data)
-        }
-      },
-      error => {
-        alert(status)
-      }
-    )
+    if (values.repassword == values.password && Register.phonNum.toString().length === 9) {
+      alert(JSON.stringify(Register))
+      // this.networkUserservice.postRegister(Register).subscribe(
+      //   data => {
+      //     if (data.status == 'success') {
+      //       alert(`ลงทะเบียนเสร็จสื้้น`)
+      //       window.location.href = '/login'
+      //     } else {
+      //       alert(data.data)
+      //     }
+      //   },
+      //   error => {
+      //     alert(status)
+      //   }
+      // )
+    } else if (Register.phonNum.toString().length !== 9) {
+      alert(`Phone Number Incorrect`)
+    }
+    else {
+      alert(`The password is incorrect, try it.`)
+      this.valuePassword = ''
+      this.valueRepassword = ''
+    }
+
 
 
   }

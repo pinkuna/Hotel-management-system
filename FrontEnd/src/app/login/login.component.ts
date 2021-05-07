@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { login } from '../models/login.model';
 import { NetworkUserService } from '../services/network-user.service';
@@ -8,9 +8,14 @@ import { NetworkUserService } from '../services/network-user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
+
 export class LoginComponent implements OnInit {
+  @Output() Iflog: boolean;
 
   eye: boolean
+
 
   constructor(private networkUserservice: NetworkUserService) {
 
@@ -38,8 +43,10 @@ export class LoginComponent implements OnInit {
         if (data.status == 'success') {
           alert(data.data)
           window.location.href = '/'
+          this.Iflog = true;
         } else {
           alert(data.data)
+          this.Iflog = false;
         }
       },
       error => {
@@ -52,8 +59,5 @@ export class LoginComponent implements OnInit {
     console.log(this.eye);
 
   }
-
-
-
-
 }
+
