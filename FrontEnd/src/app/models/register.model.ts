@@ -5,9 +5,9 @@ export class register {
     repassword: string;
     Usename: string;
     idcard: number;
-    phonNum: number;
+    phonNum: string;
     email: any;
-    address : string;
+    address: string;
 }
 
 export interface registerRequire {
@@ -19,5 +19,10 @@ export interface registerRequire {
     idcard: number;
     phonNum: number;
     email: any;
-    address : string;
+    address: string;
+}
+
+export interface registerRes {
+    status: string;
+    data: string;
 }

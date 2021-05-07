@@ -4,7 +4,8 @@ export class Booking {
     phonNum: number;
     idcard: string;
     email: any
-    date : any;
+    date: any;
+    roomNum: number;
 }
 export interface booking {
     name: string;
@@ -13,4 +14,4 @@ export interface booking {
     email: any;
     roomNum: number;
     date: any;
-  }
+}
