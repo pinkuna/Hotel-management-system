@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { login } from '../models/login.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ export class LoginComponent implements OnInit {
 
   eye: boolean
 
-  constructor() {
+  constructor(private networkUserservice: NetworkUserService) {
 
-    
-   }
+
+  }
 
   ngOnInit(): void {
   }
@@ -30,13 +31,25 @@ export class LoginComponent implements OnInit {
     Login.username = values.username;
     Login.password = values.password;
     alert(JSON.stringify(Login))
+
+
+    this.networkUserservice.postlogin(Login).subscribe(
+      data => {
+        console.log(`res : ${data}`);
+        alert(JSON.stringify(Login))
+      },
+      error => {
+
+      })
   }
 
-  onClick(){
+  onClick() {
     this.eye = !this.eye
     console.log(this.eye);
-    
+
   }
+
+
 
 
 }

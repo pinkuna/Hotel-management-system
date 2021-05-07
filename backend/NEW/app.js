@@ -26,18 +26,14 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
-        // cookie: {
-        //     maxAge: 30 * 60 * 1000
-        // },
+    // cookie: {
+    //     maxAge: 30 * 60 * 1000
+    // },
 }));
 
 // Controllers
 app.use('/api/booking', bookingcon)
-<<<<<<< HEAD
 app.use('/api/checkout', checkoutcon)
-=======
-    // app.use('/api/checkout', checkoutcon)
->>>>>>> AKIRA
 app.use('/api/report', reportcon)
 app.use('/api/login', logincon)
 app.use('/api/register', registercon)
