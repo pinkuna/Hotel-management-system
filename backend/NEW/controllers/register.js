@@ -37,15 +37,16 @@ router.post('/', (req, res) => {
             address
         ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
         values: [req.body.username, req.body.usersurname, req.body.password,
-        req.body.Usename, req.body.idcard, req.body.phoneNum,
-        req.body.email, req.body.address]
+            req.body.Usename, req.body.idcard, req.body.phoneNum,
+            req.body.email, req.body.address
+        ]
     }
 
-    pool.connect(function (err, client, done) {
+    pool.connect(function(err, client, done) {
         if (err) {
             return console.error('connexion error', err);
         }
-        client.query(insert, function (err, result) {
+        client.query(insert, function(err, result) {
             // call `done()` to release the client back to the pool
             done();
 
@@ -55,7 +56,10 @@ router.post('/', (req, res) => {
             console.log(result.rows)
         });
     });
-    res.status(201).json(req.body)
+    res.status(201).json({
+        'status': 200
+    })
+    res.end()
 })
 
 // examples
