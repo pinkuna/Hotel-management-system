@@ -42,6 +42,7 @@ router.post("/", (request, response) => {
       }
       client.query(reposts, function (err, result) {
         done();
+
         if (err) {
           return console.error("error running query", err);
         }
