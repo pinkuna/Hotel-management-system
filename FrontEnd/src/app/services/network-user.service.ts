@@ -11,24 +11,7 @@ export class NetworkUserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postRegister(Register: register): Observable<registerRequire>{
-    return this.httpClient.post<registerRequire>('http://localhost:8004/api/register',this.makeFormData(Register))
-    
-
-  }
-
-  makeFormData(Register: register): FormData{
-    const formData = new FormData()
-    formData.append('username',Register.username)
-    formData.append('Usesurname',Register.Usesurname)
-    formData.append('password',Register.password)
-    formData.append('repassword',Register.repassword)
-    formData.append('Usename',Register.Usename)
-    formData.append('idcard',`${Register.idcard}`)
-    formData.append('phonNum',`${Register.phonNum}`)
-    formData.append('email',Register.email)
-    formData.append('address',Register.address)
-  
-    return formData;
+  postRegister(Register: register): Observable<any>{
+    return this.httpClient.post<any>('http://localhost:8004/api/register',Register)
   }
 }

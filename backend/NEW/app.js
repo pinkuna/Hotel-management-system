@@ -1,5 +1,6 @@
 const express = require('express')
 var session = require('express-session');
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8004
 const cors = require('cors')
@@ -9,6 +10,7 @@ const path = require('path')
 
 // middle ware
 app.use(express.json())
+app.use(cors()) //all 
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())  //all 
 
@@ -24,14 +26,18 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
-    // cookie: {
-    //     maxAge: 30 * 60 * 1000
-    // },
+        // cookie: {
+        //     maxAge: 30 * 60 * 1000
+        // },
 }));
 
 // Controllers
 app.use('/api/booking', bookingcon)
+<<<<<<< HEAD
 app.use('/api/checkout', checkoutcon)
+=======
+    // app.use('/api/checkout', checkoutcon)
+>>>>>>> AKIRA
 app.use('/api/report', reportcon)
 app.use('/api/login', logincon)
 app.use('/api/register', registercon)

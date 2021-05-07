@@ -35,11 +35,14 @@ export class RegisterComponent implements OnInit {
     Register.address = values.address;
     Register.email = values.email;
 
-    alert(JSON.stringify(Register));
+    //alert(JSON.stringify(Register))
 
     this.networkUserservice.postRegister(Register).subscribe(
-      (data) => {
-        this.location.back();
+      data => {
+        if (data.status === 200){
+          alert(`ลงทะเบัยนเสร็จสื้้น`)
+        }
+        console.log(data);
       },
       error =>{
         // console.log(error.error.massage)
