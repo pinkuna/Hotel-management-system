@@ -35,8 +35,13 @@ export class LoginComponent implements OnInit {
 
     this.networkUserservice.postlogin(Login).subscribe(
       data => {
-        console.log(`res : ${data}`);
-        alert(JSON.stringify(Login))
+        console.log(data.status);
+        if (data.status == 'success') {
+          alert(data.data)
+          window.location.href = '/'
+        } else {
+          alert(data.data)
+        }
       },
       error => {
 

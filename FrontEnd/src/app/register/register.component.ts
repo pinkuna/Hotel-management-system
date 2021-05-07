@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     if (registerForm.invalid) {
       return;
     }
-    
+
     const values = registerForm.value;
     let Register = new register();
     Register.username = values.username;
@@ -37,19 +37,19 @@ export class RegisterComponent implements OnInit {
 
     this.networkUserservice.postRegister(Register).subscribe(
       data => {
-        if (data.status === 200){
+        if (data.status == 'susess') {
           alert(`ลงทะเบัยนเสร็จสื้้น`)
+          window.location.href = '/login'
+        } else {
+          alert(data.data)
         }
-        console.log(data);
       },
-      error =>{
-        // console.log(error.error.massage)
-        
-        
+      error => {
+        alert(status)
       }
     )
 
-    
+
   }
   onClick() {
     this.eye = !this.eye
@@ -58,3 +58,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+
