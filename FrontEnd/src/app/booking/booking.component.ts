@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Booking } from '../models/booking.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-booking',
@@ -10,7 +11,7 @@ import { Booking } from '../models/booking.model';
 })
 export class BookingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private networkUserservice: NetworkUserService) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +29,19 @@ export class BookingComponent implements OnInit {
     booking.email = values.email;
     booking.phonNum = values.phonNum;
     booking.date = values.date;
-    alert(JSON.stringify(booking))
+    booking.roomNum = values.roomNum;
+
+    this.networkUserservice.postbooking(booking).subscribe(
+      data => {
+        console.log(data.status);
+        if (data.status == 'success') {
+          alert(data.data)
+          window.location.href = '/'
+        } else {
+          alert(data.data)
+        }
+      },
+      error => {
+      })
   }
 }

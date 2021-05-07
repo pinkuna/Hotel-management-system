@@ -37,8 +37,8 @@ export class RegisterComponent implements OnInit {
 
     this.networkUserservice.postRegister(Register).subscribe(
       data => {
-        if (data.status == 'susess') {
-          alert(`ลงทะเบัยนเสร็จสื้้น`)
+        if (data.status == 'success') {
+          alert(`ลงทะเบียนเสร็จสื้้น`)
           window.location.href = '/login'
         } else {
           alert(data.data)
