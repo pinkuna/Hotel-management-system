@@ -14,24 +14,53 @@ import { Response } from '../models/Respones.model';
 export class NetworkUserService {
   constructor(private httpClient: HttpClient) {}
 
-
   postRegister(Register: register): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/register', Register)
+    return this.httpClient.post<Response>(
+      'http://localhost:8004/api/register',
+      Register,
+      {
+        withCredentials: true, // <=========== important!
+      }
+    );
   }
 
   postlogin(Login: login): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/login', Login)
+    return this.httpClient.post<Response>(
+      'http://localhost:8004/api/login',
+      Login,
+      {
+        withCredentials: true, // <=========== important!
+      }
+    );
   }
 
   postbooking(booking: Booking): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/booking', booking)
+    return this.httpClient.post<Response>(
+      'http://localhost:8004/api/booking',
+      booking,
+      {
+        withCredentials: true, // <=========== important!
+      }
+    );
   }
 
   postReport(report: Report): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/report', report)
+    return this.httpClient.post<Response>(
+      'http://localhost:8004/api/report',
+      report,
+      {
+        withCredentials: true, // <=========== important!
+      }
+    );
   }
 
   postCheckout(Checkuot: checkout): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/checkout', Checkuot)
+    return this.httpClient.post<Response>(
+      'http://localhost:8004/api/checkout',
+      Checkuot,
+      {
+        withCredentials: true, // <=========== important!
+      }
+    );
   }
 }
