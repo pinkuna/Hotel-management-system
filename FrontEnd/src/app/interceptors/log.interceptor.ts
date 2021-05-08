@@ -17,8 +17,11 @@ export class LogInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           const elapsed = Date.now() - started;
           console.log(`[${event.status}]Request for ${req.urlWithParams} took ${elapsed} ms.`);
+          console.log(JSON.stringify(req));
+
         }
       })
     );
   }
 }
+
