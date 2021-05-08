@@ -70,7 +70,7 @@ router.post("/", (request, response) => {
             });
         });
     } else {
-        response.status(400).json({ status: 'failed', data: 'please login' });
+        response.status(200).json({ status: 'failed', data: 'please login' });
         //response.redirect('/api/login/');
         response.end();
     }
