@@ -30,8 +30,7 @@ router.post("/", (request, response) => {
             }
             client.query(queryMessage, (err, result) => {
                 let data = result.rows
-                client.end()
-                // let condition = false
+                done()
                 if (data.length == 0) {
                     response.status(200).json({ status: 'failed', data: 'Please Register or Invalid username' })
                 } else {

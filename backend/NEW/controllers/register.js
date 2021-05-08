@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
         req.body.email, req.body.address
         ]
     }
-
+    console.log(pool.totalCount)
     pool.connect(function (err, client, done) {
         if (err) {
             return console.error('connection error', err);
