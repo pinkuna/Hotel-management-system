@@ -8,7 +8,7 @@ import { checkout } from '../models/Checkout.model';
 })
 export class AdminCheckoutComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','phonNum','roomNum','date','action'];
+  displayedColumns: string[] = ['name', 'phoneNum', 'roomNum', 'date', 'action'];
   dataSource = ELEMENT_DATA;
 
   constructor() { }
@@ -19,16 +19,16 @@ export class AdminCheckoutComponent implements OnInit {
 }
 
 const ELEMENT_DATA: checkout[] = [
-  {name: 'Hydrogen', phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Helium', phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Lithium', phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Beryllium', phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Boron',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Carbon',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Nitrogen',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Oxygen',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Fluorine',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
-  {name: 'Neon',  phonNum: 123456,roomNum: 204, date:'25/12/65'},
+  { name: 'Hydrogen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Helium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Lithium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Beryllium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Boron', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Carbon', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Nitrogen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Oxygen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Fluorine', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
+  { name: 'Neon', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
 ];
 
 

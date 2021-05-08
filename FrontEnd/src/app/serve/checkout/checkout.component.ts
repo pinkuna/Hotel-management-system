@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
     let checkOut = new checkout();
     checkOut.roomNum = values.roomNum;
     checkOut.name = values.name;
-    checkOut.phonNum = values.phonNum;
+    checkOut.phoneNum = values.phoneNum;
     checkOut.date = values.date;
 
     this.networkUserservice.postCheckout(checkOut).subscribe(

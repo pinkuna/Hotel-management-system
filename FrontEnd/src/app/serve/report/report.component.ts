@@ -31,7 +31,7 @@ export class ReportComponent implements OnInit {
     let reports = new Report();
     reports.roomNum = values.roomNum;
     reports.name = values.name;
-    reports.phonNum = values.phonNum;
+    reports.phoneNum = values.phoneNum;
     reports.theProblems = values.theProblems;
     reports.title = values.title;
 

@@ -1,17 +1,17 @@
 export class Report {
     roomNum: number;
     name: string;
-    phonNum: number;
+    phoneNum: number;
     theProblems: string;
     Requre: string;
-    title : string;
+    title: string;
 }
 
 export interface report {
     roomNum: number;
     name: string;
-    phonNum: string;
+    phoneNum: string;
     theProblems: string;
     Requre: string;
-    title : string;
+    title: string;
 }

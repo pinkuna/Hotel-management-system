@@ -43,7 +43,7 @@ export class PayComponent implements OnInit {
     let pay = new Pay();
     pay.roomNum = values.roomNum;
     pay.name = values.name;
-    pay.phonNum = values.phonNum;
+    pay.phoneNum = values.phoneNum;
     pay.time = values.time;
     pay.amount = values.amount;
     pay.bank = values.bank;
