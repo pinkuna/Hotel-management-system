@@ -4,6 +4,7 @@ const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8004
 
+
 // const bodyParser = require('body-parser')
 const path = require('path')
 
@@ -11,6 +12,7 @@ const path = require('path')
 app.use(express.json())
 app.use(cors()) //all 
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())  //all 
 
 
 // Import Controllers
@@ -24,9 +26,9 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
-        // cookie: {
-        //     maxAge: 30 * 60 * 1000
-        // },
+    // cookie: {
+    //     maxAge: 30 * 60 * 1000
+    // },
 }));
 
 // Controllers

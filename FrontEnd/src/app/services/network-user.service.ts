@@ -9,11 +9,11 @@ import { Report } from '../models/Reports.model';
 import { Response } from '../models/Respones.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NetworkUserService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
 
   postRegister(Register: register): Observable<Response> {
     return this.httpClient.post<Response>('http://localhost:8004/api/register', Register)
