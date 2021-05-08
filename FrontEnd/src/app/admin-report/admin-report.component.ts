@@ -8,7 +8,7 @@ import { report } from '../models/Reports.model';
 })
 export class AdminReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','phonNum','roomNum','theProblems','Requre','title','action'];
+  displayedColumns: string[] = ['name', 'phoneNum', 'roomNum', 'theProblems', 'Requre', 'title', 'action'];
   dataSource = ELEMENT_DATA;
 
 
@@ -20,15 +20,15 @@ export class AdminReportComponent implements OnInit {
 }
 
 const ELEMENT_DATA: report[] = [
-  {name: 'Hydrogen', phonNum: 'H',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Helium', phonNum: 'He',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Lithium', phonNum: 'Li',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Beryllium', phonNum: 'Be',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Boron',  phonNum: 'B',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Carbon',  phonNum: 'C',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Nitrogen',  phonNum: 'N',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Oxygen',  phonNum: 'O',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Fluorine',  phonNum: 'F',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
-  {name: 'Neon',  phonNum: 'Ne',roomNum: 204, theProblems:'ท่อน้ำแตก', Requre: 'ด่วน', title:'ท่อน้ำ'},
+  { name: 'Hydrogen', phoneNum: 'H', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Helium', phoneNum: 'He', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Lithium', phoneNum: 'Li', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Beryllium', phoneNum: 'Be', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Boron', phoneNum: 'B', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Carbon', phoneNum: 'C', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Nitrogen', phoneNum: 'N', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Oxygen', phoneNum: 'O', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Fluorine', phoneNum: 'F', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
+  { name: 'Neon', phoneNum: 'Ne', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
 ];
 

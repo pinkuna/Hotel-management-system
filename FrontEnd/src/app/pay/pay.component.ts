@@ -9,6 +9,10 @@ import { Pay } from '../models/pay.model';
 })
 export class PayComponent implements OnInit {
 
+  valueName: string = 'Jetniphan'
+  valueRoomnum: string = '204'
+  valuePhone: string = '123456789'
+
   imagePreview: any;
   file: File;
 
@@ -32,18 +36,18 @@ export class PayComponent implements OnInit {
   onSubmit(payForm: NgForm) {
     if (payForm.invalid) {
       //return console.log(`Error`);
-      ; 
+      ;
     }
 
     const values = payForm.value;
     let pay = new Pay();
     pay.roomNum = values.roomNum;
     pay.name = values.name;
-    pay.phonNum = values.phonNum;
+    pay.phoneNum = values.phoneNum;
     pay.time = values.time;
-    pay.amount= values.amount;
-    pay.bank= values.bank;
-    pay.image=this.file;
+    pay.amount = values.amount;
+    pay.bank = values.bank;
+    pay.image = this.file;
     alert(JSON.stringify(pay))
   }
 

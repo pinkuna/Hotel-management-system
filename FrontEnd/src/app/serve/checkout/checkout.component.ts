@@ -12,6 +12,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private networkUserservice: NetworkUserService) { }
 
+  valueName: string = 'Jetniphan'
+  valueRoomnum: string = '204'
+  valuePhone: string = '123456789'
+
   ngOnInit(): void {
   }
   onCheckout(CheckoutForm: NgForm) {
@@ -24,14 +28,14 @@ export class CheckoutComponent implements OnInit {
     let checkOut = new checkout();
     checkOut.roomNum = values.roomNum;
     checkOut.name = values.name;
-    checkOut.phonNum = values.phonNum;
+    checkOut.phoneNum = values.phoneNum;
     checkOut.date = values.date;
 
     this.networkUserservice.postCheckout(checkOut).subscribe(
       data => {
         if (data.status == 'success') {
           alert(`Summit Complete`)
-          window.location.href = '/'
+          // window.location.href = '/'
         } else {
           alert(data.data)
         }

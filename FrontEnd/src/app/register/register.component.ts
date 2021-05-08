@@ -33,13 +33,13 @@ export class RegisterComponent implements OnInit {
     Register.repassword = values.repassword;
     Register.Usename = values.Usename;
     Register.Usesurname = values.Usesurname;
-    Register.phonNum = values.phonNum;
+    Register.phoneNum = values.phoneNum;
     Register.idcard = values.idcard;
     Register.address = values.address;
     Register.email = values.email;
 
 
-    if (values.repassword == values.password && Register.phonNum.toString().length === 9) {
+    if (values.repassword == values.password && Register.phoneNum.toString().length === 9) {
       alert(JSON.stringify(Register))
       // this.networkUserservice.postRegister(Register).subscribe(
       //   data => {
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
       //     alert(status)
       //   }
       // )
-    } else if (Register.phonNum.toString().length !== 9) {
+    } else if (Register.phoneNum.toString().length !== 9) {
       alert(`Phone Number Incorrect`)
     }
     else {

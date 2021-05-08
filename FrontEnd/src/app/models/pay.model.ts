@@ -1,7 +1,7 @@
 export class Pay {
     roomNum: number;
     name: string;
-    phonNum: number;
+    phoneNum: number;
     time: any;
     amount: string;
     bank: string;

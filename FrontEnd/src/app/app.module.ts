@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AdminBookingComponent } from './admin-booking/admin-booking.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
 import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
+import { httpInterceptorProviders } from './interceptors';
 
 
 
@@ -83,7 +84,9 @@ import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.componen
     MatNativeDateModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
