@@ -48,7 +48,7 @@ router.post("/", (request, response) => {
         }
       });
     });
-    response.status(201);
+    response.status(201).json({status:'success', data:'report send to admin'});
     response.end();
   } else {
     response.status(200).json({status:'failed', data:'please login'});
@@ -56,4 +56,40 @@ router.post("/", (request, response) => {
     response.end();
   }
 });
+
+
+router.post("/admin", (request, response) => {
+  pool.connect((err, client, done) => {
+    const books = `SELECT * from report;`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(books, function (err, result) {
+      if (err) {
+        return console.error("error running query", err);
+      }
+      response.status(200).json(result.rows);
+      response.end();
+    });
+  });
+});
+
+
+router.post("/admin/delete", (request, response) => {
+  const paramid = request.query.id;
+  pool.connect((err, client, done) => {
+    const books = `DELETE FROM report WHERE id = '${request.query.id}'`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(books, function (err, result) {
+      if (err) {
+        return console.error("error running query", err);
+      }
+      response.status(200).json({status : 'success', data : `delete table id ${paramid}`});
+      response.end();
+    });
+  });
+});
+
 module.exports = router;
