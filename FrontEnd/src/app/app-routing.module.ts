@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminBookingComponent } from './admin-booking/admin-booking.component';
+import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
+import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './booking/booking.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -12,13 +16,13 @@ import { ReportComponent } from './serve/report/report.component';
 
 const routes: Routes = [
   {
-    path: 'home', component: HomeComponent
+    path: '', component: HomeComponent
   },
   {
     path: 'news', component: NewsComponent
   },
   {
-    path: 'serve/report',component: ReportComponent
+    path: 'serve/report', component: ReportComponent
   },
   {
     path: 'serve/agreement', component: AgreementComponent
@@ -37,6 +41,18 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'admin', component: AdminComponent
+  },
+  {
+    path: 'admin-booking', component: AdminBookingComponent
+  },
+  {
+    path: 'admin-report', component: AdminReportComponent
+  },
+  {
+    path: 'admin-checkout', component: AdminCheckoutComponent
   }
 ];
 
