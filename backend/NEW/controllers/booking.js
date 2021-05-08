@@ -24,22 +24,25 @@ const pool = new pg.Pool({
 router.post("/", (request, response) => {
     if (request.session.loggedin) {
         const userid = request.session.userid;
-        const datauser = `SELECT * from booking WHERE loginid = '${userid}';`; //request.session.userid WHERE loginid = '${userid}'
         pool.connect((err, client, done) => {
+            const datauser = `SELECT * from booking WHERE loginid = '${userid}';`; //request.session.userid WHERE loginid = '${userid}'
             if (err) {
                 return console.error("connection error", err);
             }
-            client.query(datauser, function(err, result) {
+            client.query(datauser, function (err, result) {
                 if (err) {
                     return console.error("error running query", err);
                 }
                 if (result.rows[0] != undefined) {
                     const updates = `UPDATE booking SET name ='${request.body.name}', 
-          phoneNum ='${request.body.phoneNum}', idcard = '${request.body.idcard}', 
-          email = '${request.body.email}', date = '${request.body.date}' 
-          WHERE loginid = '${request.session.userid}';`;
-                    client.query(updates, function(err, result) {
+                                    phoneNum ='${request.body.phoneNum}',
+                                    idcard = '${request.body.idcard}', 
+                                    email = '${request.body.email}', 
+                                    date = '${request.body.date}' 
+                                    WHERE loginid = ${request.session.userid};`;
+                    client.query(updates, function (err, result) {
                         if (err) {
+
                             return console.error("error running query", err);
                         }
                     });
@@ -58,7 +61,7 @@ router.post("/", (request, response) => {
                             request.session.userid,
                         ],
                     };
-                    client.query(insert, function(err, result) {
+                    client.query(insert, function (err, result) {
                         if (err) {
                             return console.error("error running query", err);
                         }

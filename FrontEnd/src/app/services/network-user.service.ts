@@ -14,7 +14,6 @@ import { Response } from '../models/Respones.model';
 export class NetworkUserService {
   constructor(private httpClient: HttpClient) { }
 
-
   postRegister(Register: register): Observable<Response> {
     return this.httpClient.post<Response>(`register`, Register,
       {
