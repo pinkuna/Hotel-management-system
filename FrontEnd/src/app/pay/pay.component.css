@@ -10,3 +10,11 @@
     line-height: 20px;
     font-family: "Open Sans", sans-serif;
 }
+
+::ng-deep .mat-card-header-text {
+    width: 100%;
+}
+
+[type='file'] {
+    display: none;
+}

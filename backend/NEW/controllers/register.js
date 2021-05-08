@@ -14,6 +14,7 @@
 
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcryptjs')
 
 const pg = require('pg')
 const pool = new pg.Pool({
@@ -24,8 +25,11 @@ const pool = new pg.Pool({
     port: 5432
 })
 
+// path = localhost:8004/api/register
 router.post('/', (req, res) => {
-    let insert = {
+    let hash_password = bcrypt.hashSync(req.body.password, 10)
+
+    let queryMessage = {
         text: `insert into Register(   
             username,
             usersurname,
@@ -36,36 +40,27 @@ router.post('/', (req, res) => {
             email,
             address
         ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
-        values: [req.body.username, req.body.usersurname, req.body.password,
+        values: [req.body.username, req.body.usersurname, hash_password,
         req.body.Usename, req.body.idcard, req.body.phoneNum,
-        req.body.email, req.body.address]
+        req.body.email, req.body.address
+        ]
     }
-
+    console.log(pool.totalCount)
     pool.connect(function (err, client, done) {
         if (err) {
-            return console.error('connexion error', err);
+            return console.error('connection error', err);
         }
-        client.query(insert, function (err, result) {
-            // call `done()` to release the client back to the pool
-            done();
-
+        client.query(queryMessage, function (err, result) {
+            done();  // call `done()` to release the client back to the pool
             if (err) {
                 return console.error('error running query', err);
+            } else {
             }
-            console.log(result.rows)
-        });
-    });
-    res.status(201).json(req.body)
+        })
+    })
+    res.status(201).json({ status: 'success', data: 'Register success' })
+    res.end()
 })
 
-// examples
-router.post('/register', (req, res) => {
-    console.log(req)
-    console.log(req.body)
-    console.log(req.body.email)
-    res.status(201).json(req.body)
-})
-
-
-// Export
+// Export module
 module.exports = router

@@ -1,14 +1,38 @@
 const express = require('express')
-var session = require('express-session');
+const session = require('express-session');
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8004
+
 
 // const bodyParser = require('body-parser')
 const path = require('path')
 
 // middle ware
 app.use(express.json())
+app.use(cors(
+    {
+        origin: [
+            "http://localhost:4200"
+        ], credentials: true
+    }
+)) //all 
 app.use(express.urlencoded({ extended: true }))
+// app.use(cookieParser())
+app.set('trust proxy', 1)
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+    // cookie: {
+    //     maxAge: 30 * 60 * 1000
+    // },
+    // secret: 'keyboard cat',
+    // resave: false,
+    // saveUninitialized: true,
+    // cookie: { secure: true, maxAge: 60000 }
+}));
 
 
 // Import Controllers
@@ -17,15 +41,6 @@ const checkoutcon = require('./controllers/checkout')
 const logincon = require('./controllers/login')
 const registercon = require('./controllers/register')
 const reportcon = require('./controllers/report')
-
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-    // cookie: {
-    //     maxAge: 30 * 60 * 1000
-    // },
-}));
 
 // Controllers
 app.use('/api/booking', bookingcon)

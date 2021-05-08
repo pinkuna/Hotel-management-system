@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input("medie_query") mobileQueryMax: any;
+  @Input("Iflog") Iflog: boolean;
   @Output("toggle") navtoggle = new EventEmitter();
-  
 
   constructor() {
     console.log(this.mobileQueryMax);
@@ -18,9 +18,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClickNavToggle(){
+  onClickNavToggle() {
     this.navtoggle.emit();
   }
 
-
+  clickLogout() {
+    this.Iflog = false;
+    window.location.href = '/';
+  }
 }
