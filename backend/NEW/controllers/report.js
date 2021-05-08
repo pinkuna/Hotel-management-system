@@ -51,7 +51,7 @@ router.post("/", (request, response) => {
     response.status(201);
     response.end();
   } else {
-    response.send("please login");
+    response.status(200).json({status:'failed', data:'please login'});
     //response.redirect('/api/login/');
     response.end();
   }
