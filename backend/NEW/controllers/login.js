@@ -38,7 +38,7 @@ router.post("/", function (request, response) {
           //response.status(200).redirect('/home');
         } else {
           request.session.loggedin = false;
-          response.status(400).json({status: 'failed', data: 'username or password invalid'});
+          response.status(200).json({status: 'failed', data: 'username or password invalid'});
           //response.status(200).redirect('/login');
         }
         response.end();
@@ -46,7 +46,7 @@ router.post("/", function (request, response) {
     });
   } else {
     request.session.loggedin = false;
-    response.status(400).json({status: 'failed', data: 'please enter Username and password'});
+    response.status(200).json({status: 'failed', data: 'please enter Username and password'});
     response.end();
   }
 });
