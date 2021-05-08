@@ -52,7 +52,5 @@ export class BookingComponent implements OnInit {
     } else {
       alert(`Form incorrect`)
     }
-
-
   }
 }

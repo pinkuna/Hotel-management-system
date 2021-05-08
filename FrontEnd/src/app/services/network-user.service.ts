@@ -12,26 +12,41 @@ import { Response } from '../models/Respones.model';
   providedIn: 'root',
 })
 export class NetworkUserService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
 
   postRegister(Register: register): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/register', Register)
+    return this.httpClient.post<Response>(`register`, Register,
+      {
+        withCredentials: true
+      })
   }
 
   postlogin(Login: login): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/login', Login)
+    return this.httpClient.post<Response>(`login`, Login,
+      {
+        withCredentials: true
+      })
   }
 
   postbooking(booking: Booking): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/booking', booking)
+    return this.httpClient.post<Response>(`booking`, booking,
+      {
+        withCredentials: true
+      })
   }
 
   postReport(report: Report): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/report', report)
+    return this.httpClient.post<Response>(`report`, report,
+      {
+        withCredentials: true
+      })
   }
 
   postCheckout(Checkuot: checkout): Observable<Response> {
-    return this.httpClient.post<Response>('http://localhost:8004/api/checkout', Checkuot)
+    return this.httpClient.post<Response>(`checkout`, Checkuot,
+      {
+        withCredentials: true
+      })
   }
 }

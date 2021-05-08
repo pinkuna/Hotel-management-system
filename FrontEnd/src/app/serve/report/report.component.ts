@@ -11,7 +11,10 @@ import { NetworkUserService } from 'src/app/services/network-user.service';
 
 export class ReportComponent implements OnInit {
 
-  selectedValue: string;
+  valueName: string = 'Jetniphan'
+  valueRoomnum: string = '204'
+  valuePhone: string = '123456789'
+
 
   constructor(private networtUserservice: NetworkUserService) { }
 

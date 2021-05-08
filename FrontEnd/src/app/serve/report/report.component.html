@@ -12,14 +12,14 @@
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Room Number</mat-label>
-                        <input ngModel name="roomNum" matInput type="number" required>
+                        <input [(ngModel)]="valueRoomnum" name="roomNum" matInput type="number" required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Full Name</mat-label>
-                        <input ngModel name="name" matInput required>
+                        <input [(ngModel)]="valueName" name="name" matInput required>
                     </mat-form-field>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <mat-form-field class="w-100">
                         <mat-label>Phone Number</mat-label>
                         <span matPrefix>+66 &nbsp;</span>
-                        <input ngModel name="phonNum" matInput type="number" required>
+                        <input [(ngModel)]="valuePhone" name="phonNum" matInput type="number" required>
                     </mat-form-field>
                 </div>
 
