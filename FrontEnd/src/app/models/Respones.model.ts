@@ -31,3 +31,15 @@ export interface CheckoutRes {
     date: Date;
 }
 
+export interface UserRes {
+    id: number;
+    username: string;
+    usersurname: string;
+    password: string;
+    usename: string;
+    idcard: string;
+    phonenum: number;
+    email: string;
+    address: string;
+}
+
