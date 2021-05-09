@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { report } from '../models/Reports.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { ReportRes } from '../models/Respones.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-admin-report',
@@ -8,27 +12,46 @@ import { report } from '../models/Reports.model';
 })
 export class AdminReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'phoneNum', 'roomNum', 'theProblems', 'Requre', 'title', 'action'];
-  dataSource = ELEMENT_DATA;
+  @ViewChild(MatSort, { static: true }) sort: MatSort
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
+
+  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'theproblems', 'requre', 'title', 'action'];
+  dataSource = new MatTableDataSource<ReportRes>();
+  textSearch: any
 
 
-  constructor() { }
+  constructor(private networkUserService: NetworkUserService) { }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
+    this.feedata()
+  }
+
+  feedata() {
+    this.networkUserService.getReport().subscribe(
+      data => {
+        this.dataSource.data = data
+      }, error => {
+
+      }
+    )
+  }
+
+  search(event: Event) {
+    let fliterValue = '';
+    if (event) {
+      fliterValue = (event.target as HTMLInputElement).value;
+    }
+    console.log(typeof fliterValue);
+    this.dataSource.filter = fliterValue.trim().toLowerCase();
+  }
+
+  clearSearch() {
+    this.textSearch = '';
+    this.search(null!);
   }
 
 }
 
-const ELEMENT_DATA: report[] = [
-  { name: 'Hydrogen', phoneNum: 'H', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Helium', phoneNum: 'He', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Lithium', phoneNum: 'Li', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Beryllium', phoneNum: 'Be', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Boron', phoneNum: 'B', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Carbon', phoneNum: 'C', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Nitrogen', phoneNum: 'N', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Oxygen', phoneNum: 'O', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Fluorine', phoneNum: 'F', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-  { name: 'Neon', phoneNum: 'Ne', roomNum: 204, theProblems: 'ท่อน้ำแตก', Requre: 'ด่วน', title: 'ท่อน้ำ' },
-];
 

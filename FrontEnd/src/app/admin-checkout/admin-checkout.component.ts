@@ -1,34 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { checkout } from '../models/Checkout.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { CheckoutRes } from '../models/Respones.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-admin-checkout',
   templateUrl: './admin-checkout.component.html',
   styleUrls: ['./admin-checkout.component.css']
 })
+
+
 export class AdminCheckoutComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'phoneNum', 'roomNum', 'date', 'action'];
-  dataSource = ELEMENT_DATA;
+  @ViewChild(MatSort, { static: true }) sort: MatSort
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  constructor() { }
+  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'date', 'action'];
+  dataSource = new MatTableDataSource<CheckoutRes>();
+  textSearch: any
+
+  constructor(private networkUserService: NetworkUserService) { }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
+    this.feedata();
   }
 
+  feedata() {
+    this.networkUserService.getCheckout().subscribe(
+      data => {
+        this.dataSource.data = data
+      }, error => {
+
+      }
+    )
+  }
+
+  search(event: Event) {
+    let fliterValue = '';
+    if (event) {
+      fliterValue = (event.target as HTMLInputElement).value;
+    }
+    console.log(typeof fliterValue);
+    this.dataSource.filter = fliterValue.trim().toLowerCase();
+  }
+
+  clearSearch() {
+    this.textSearch = '';
+    this.search(null!);
+  }
 }
 
-const ELEMENT_DATA: checkout[] = [
-  { name: 'Hydrogen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Helium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Lithium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Beryllium', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Boron', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Carbon', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Nitrogen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Oxygen', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Fluorine', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-  { name: 'Neon', phoneNum: 123456, roomNum: 204, date: '25/12/65' },
-];
+
 
 
