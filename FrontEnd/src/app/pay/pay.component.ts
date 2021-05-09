@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Report } from 'src/app/models/Reports.model';
 import { NgForm } from '@angular/forms';
+import { Pay } from '../models/pay.model';
 
 @Component({
   selector: 'app-pay',
@@ -9,25 +9,46 @@ import { NgForm } from '@angular/forms';
 })
 export class PayComponent implements OnInit {
 
+  valueName: string = 'Jetniphan'
+  valueRoomnum: string = '204'
+  valuePhone: string = '123456789'
+
+  imagePreview: any;
+  file: File;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(reportForm: NgForm) {
-    if (reportForm.invalid) {
+  onPreview(event: any) {
+    const metaImage = event.target.files[0];
+    if (metaImage) {
+      this.file = metaImage;
+      const reader = new FileReader();
+      reader.readAsDataURL(metaImage);
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      }
+    }
+  }
+
+  onSubmit(payForm: NgForm) {
+    if (payForm.invalid) {
       //return console.log(`Error`);
-      ; 
+      ;
     }
 
-    const values = reportForm.value;
-    let reports = new Report();
-    reports.roomNum = values.roomNum;
-    reports.name = values.name;
-    reports.phonNum = values.phonNum;
-    reports.theProblems = values.theProblems;
-    reports.title = values.title;
-    alert(JSON.stringify(reports))
+    const values = payForm.value;
+    let pay = new Pay();
+    pay.roomNum = values.roomNum;
+    pay.name = values.name;
+    pay.phoneNum = values.phoneNum;
+    pay.time = values.time;
+    pay.amount = values.amount;
+    pay.bank = values.bank;
+    pay.image = this.file;
+    alert(JSON.stringify(pay))
   }
 
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,13 @@ import { BookingComponent } from './booking/booking.component';
 import { PayComponent } from './pay/pay.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
+import { AdminBookingComponent } from './admin-booking/admin-booking.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
+import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
+import { httpInterceptorProviders } from './interceptors';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -50,13 +58,18 @@ import { RegisterComponent } from './register/register.component';
     BookingComponent,
     PayComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    AdminBookingComponent,
+    AdminReportComponent,
+    AdminCheckoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
@@ -69,9 +82,13 @@ import { RegisterComponent } from './register/register.component';
     MatSelectModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

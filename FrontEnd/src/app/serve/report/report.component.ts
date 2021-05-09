@@ -1,6 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Report } from 'src/app/models/Reports.model';
+import { NetworkUserService } from 'src/app/services/network-user.service';
 
 @Component({
   selector: 'app-report',
@@ -10,9 +11,14 @@ import { Report } from 'src/app/models/Reports.model';
 
 export class ReportComponent implements OnInit {
 
-  selectedValue: string;
 
-  constructor() { }
+
+
+  constructor(private networtUserservice: NetworkUserService) { }
+
+  valueName: string = 'Jetniphan'
+  valueRoomnum: string = '204'
+  valuePhone: string = '123456789'
 
   ngOnInit(): void {
   }
@@ -20,17 +26,30 @@ export class ReportComponent implements OnInit {
   onSubmit(reportForm: NgForm) {
     if (reportForm.invalid) {
       //return console.log(`Error`);
-      ; 
+      ;
     }
 
     const values = reportForm.value;
     let reports = new Report();
     reports.roomNum = values.roomNum;
     reports.name = values.name;
-    reports.phonNum = values.phonNum;
+    reports.phoneNum = values.phoneNum;
     reports.theProblems = values.theProblems;
     reports.title = values.title;
-    alert(JSON.stringify(reports))
+
+    this.networtUserservice.postReport(reports).subscribe(
+      data => {
+        if (data.status == 'success') {
+          alert(`Submit Report`)
+        } else {
+          alert(data.data)
+        }
+      }, erorr => {
+
+      }
+
+    )
+
   }
 
 }

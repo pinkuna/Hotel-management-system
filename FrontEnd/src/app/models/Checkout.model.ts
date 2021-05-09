@@ -1,6 +1,6 @@
 export class checkout {
     roomNum: number;
     name: string;
-    phonNum: number;
+    phoneNum: number;
     date: any;
 }
