@@ -66,6 +66,7 @@ router.get("/admin", (request, response) => {
             response.status(200).json(result.rows);
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 
@@ -84,6 +85,7 @@ router.post("/admin/delete", (request, response) => {
             response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 

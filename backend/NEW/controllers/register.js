@@ -12,6 +12,7 @@
 const { request } = require("express");
 const express = require("express");
 const router = express.Router();
+const bcrypt = require('bcryptjs')
 
 const pg = require("pg");
 const pool = new pg.Pool({
@@ -22,76 +23,49 @@ const pool = new pg.Pool({
     port: 5432,
 });
 
-
-// router.post("/", (request, response) => {
-//     if (request.session.loggedin) {
-//         let reposts = {
-//             text: `insert into report(roomNum, name, phoneNum, theProblems, Requre, title) values ($1, $2, $3, $4, $5, $6);`,
-//             values: [
-//                 request.body.roomNum,
-//                 request.body.name,
-//                 request.body.phoneNum,
-//                 request.body.theProblems,
-//                 request.body.Requre,
-//                 request.body.title
-//             ],
-//         };
-//         pool.connect((err, client, done) => {
-//             if (err) {
-//                 return console.error("connexion error", err);
-//             }
-//             client.query(reposts, function(err, result) {
-//                 done();
-
-//                 if (err) {
-//                     return console.error("error running query", err);
-//                 }
-//             });
-//         });
-//         response.status(201).json({ status: 'success', data: 'report send to admin' });
-//         response.end();
-//     } else {
-//         response.status(200).json({ status: 'failed', data: 'please login' });
-//         //response.redirect('/api/login/');
-//         response.end();
-//     }
-// });
-
 // path = localhost:8004/api/register
 router.post('/', (req, res) => {
-    let hash_password = bcrypt.hashSync(req.body.password, 10)
 
-    let queryMessage = {
-        text: `insert into Register(   
-            username,
-            usersurname,
-            password,
-            Usename,
-            idcard,
-            phoneNum,
-            email,
-            address
-        ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
-        values: [req.body.username, req.body.usersurname, hash_password,
-        req.body.Usename, req.body.idcard, req.body.phoneNum,
-        req.body.email, req.body.address
-        ]
-    }
-    console.log(pool.totalCount)
     pool.connect(function (err, client, done) {
         if (err) {
             return console.error('connection error', err);
         }
-        client.query(queryMessage, function (err, result) {
-            done();  // call `done()` to release the client back to the pool
+        client.query(`SELECT * FROM Register WHERE username = '${req.body.username}';`, (err, result) => {
             if (err) {
-                return console.error('error running query', err);
+                return console.error("error running query", err);
+            }
+            if (result.rows[0] === undefined) {
+                let hash_password = bcrypt.hashSync(req.body.password, 10)
+                let queryMessage = {
+                    text: `insert into Register(   
+                        username,
+                        usersurname,
+                        password,
+                        Usename,
+                        idcard,
+                        phoneNum,
+                        email,
+                        address
+                    ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
+                    values: [req.body.username, req.body.usersurname, hash_password,
+                    req.body.Usename, req.body.idcard, req.body.phoneNum,
+                    req.body.email, req.body.address
+                    ]
+                }
+                client.query(queryMessage, (err, result) => {
+                    if (err) {
+                        return console.error('error running query', err);
+                    }
+                })
+                res.status(200).json({ status: 'success', data: 'Register success' })
+                res.end()
             } else {
+                res.status(200).json({ status: 'failed', data: 'Username already exists' })
+                res.end()
             }
         })
+        return done()   // call `done()` to release the client back to the pool
     })
-    res.status(201).json({ status: 'success', data: 'Register success' })
-    res.end()
 })
 
 
@@ -101,13 +75,14 @@ router.get("/admin", (request, response) => {
         if (err) {
             return console.error("connection error", err);
         }
-        client.query(books, function(err, result) {
+        client.query(books, function (err, result) {
             if (err) {
                 return console.error("error running query", err);
             }
             response.status(200).json(result.rows);
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 
@@ -119,13 +94,14 @@ router.post("/admin/delete", (request, response) => {
         if (err) {
             return console.error("connection error", err);
         }
-        client.query(books, function(err, result) {
+        client.query(books, function (err, result) {
             if (err) {
                 return console.error("error running query", err);
             }
             response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 
@@ -135,7 +111,7 @@ router.get("/admin/user", (request, response) => {
         if (err) {
             return console.error("connection error", err);
         }
-        client.query(books, function(err, result) {
+        client.query(books, function (err, result) {
             done();
             if (err) {
                 return console.error("error running query", err);
