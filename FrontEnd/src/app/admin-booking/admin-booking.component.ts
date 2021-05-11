@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { booking} from '../models/booking.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { BookingRes } from '../models/Respones.model';
+import { MatSort } from '@angular/material/sort';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-admin-booking',
@@ -9,29 +13,45 @@ import { booking} from '../models/booking.model';
 })
 export class AdminBookingComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','idcard','phonnum','email', 'roomNum','date','action'];
-  dataSource = ELEMENT_DATA;
+  @ViewChild(MatSort, { static: true }) sort: MatSort
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  constructor() { }
+  displayedColumns: string[] = ['id', 'name', 'idcard', 'phonenum', 'email', 'roomNum', 'date', 'action'];
+  dataSource = new MatTableDataSource<BookingRes>();
+  textSearch: any;
+
+  constructor(private networkUserservic: NetworkUserService) { }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
+    this.feedata();
   }
 
+  feedata() {
+    this.networkUserservic.getBooking().subscribe(
+      data => {
+        this.dataSource.data = data
+      }, error => {
+
+      }
+    )
+  }
+
+  search(event: Event) {
+    let fliterValue = '';
+    if (event) {
+      fliterValue = (event.target as HTMLInputElement).value;
+    }
+    console.log(typeof fliterValue);
+    this.dataSource.filter = fliterValue.trim().toLowerCase();
+  }
+
+  clearSearch() {
+    this.textSearch = '';
+    this.search(null!);
+  }
 }
-
-const ELEMENT_DATA: booking[] = [
-  {name: 'Hydrogen', idcard: '1', phonnum: 'H',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Helium', idcard: '1', phonnum: 'He',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Lithium', idcard: '6', phonnum: 'Li',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Beryllium', idcard: '9', phonnum: 'Be',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Boron', idcard: '10', phonnum: 'B',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Carbon', idcard: '12', phonnum: 'C',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Nitrogen', idcard: '14', phonnum: 'N',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Oxygen', idcard: '15', phonnum: 'O',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Fluorine', idcard: '18', phonnum: 'F',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-  {name: 'Neon', idcard: '20', phonnum: 'Ne',email:'Jeniphan',roomNum:204,date:'25/08/61'},
-];
-
 
 
 

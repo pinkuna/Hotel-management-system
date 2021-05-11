@@ -48,10 +48,10 @@ router.post("/", (request, response) => {
         }
       });
     });
-    response.status(201).json({status:'success', data:'report send to admin'});
+    response.status(201).json({ status: 'success', data: 'report send to admin' });
     response.end();
   } else {
-    response.status(200).json({status:'failed', data:'please login'});
+    response.status(200).json({ status: 'failed', data: 'please login' });
     //response.redirect('/api/login/');
     response.end();
   }
@@ -65,18 +65,18 @@ router.get("/admin", (request, response) => {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
-      done();
       if (err) {
         return console.error("error running query", err);
       }
       response.status(200).json(result.rows);
       response.end();
     });
+    return done()   // call `done()` to release the client back to the pool
   });
 });
 
 
-router.post("/admin/delete", (request, response) => {
+router.delete("/delete", (request, response) => {
   const paramid = request.query.id;
   pool.connect((err, client, done) => {
     const books = `DELETE FROM report WHERE id = '${request.query.id}'`;
@@ -88,9 +88,10 @@ router.post("/admin/delete", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
-      response.status(200).json({status : 'success', data : `delete table id ${paramid}`});
+      response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
       response.end();
     });
+    return done()   // call `done()` to release the client back to the pool
   });
 });
 

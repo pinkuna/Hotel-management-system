@@ -86,39 +86,71 @@ router.get("/admin", (request, response) => {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
-      done();
       if (err) {
         return console.error("error running query", err);
       }
-      var imports = (result.rows);
       response.status(200).json(result.rows);
       response.end();
     });
+    return done(); // call `done()` to release the client back to the pool
   });
-  //console.log(imports)
-  //response.end();
 });
 
-router.post("/admin/delete", (request, response) => {
-  const paramid = request.query.id;
+router.put("/admin/check/:id", (request, response) => {
   pool.connect((err, client, done) => {
-    const books = `DELETE FROM booking WHERE id = '${request.query.id}'`;
+    const upcheck = `UPDATE booking SET admin_check = true WHERE id = '${request.params.id}'`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+      client.query(upcheck, function (err, result) {
+        if (err) {
+          return console.error("error running query", err);
+        }
+      });
+      response.status(200).json({ status: "success" });
+      response.end();
+    return done(); // call `done()` to release the client back to the pool
+  });
+});
+
+router.delete("/admin/delete/:id", (request, response) => {
+  pool.connect((err, client, done) => {
+    const books = `DELETE FROM booking WHERE id = '${request.params.id}'`;
     if (err) {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
-      done();
       if (err) {
         return console.error("error running query", err);
       }
-      response
-        .status(200)
-        .json({ status: "success", data: `delete table id ${paramid}` });
+      response.status(200).json({status: "success",data: `delete table id ${request.params.id}`,
+        });
       response.end();
     });
+    return done(); // call `done()` to release the client back to the pool
   });
 });
 
+router.get("/admin/rowscount", (request, response) => {
+  pool.connect((err, client, done) => {
+    const books = `SELECT
+    (SELECT COUNT(*) FROM booking) AS booking, 
+    (SELECT COUNT(*) FROM report) AS report,
+    (SELECT COUNT(*) FROM checkout) AS checkout,
+    (SELECT COUNT(*) FROM register) AS register;`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(books, function (err, result) {
+      if (err) {
+        return console.error("error running query", err);
+      }
+      response.status(200).json(result.rows);
+      response.end();
+    });
+    return done(); // call `done()` to release the client back to the pool
+  });
+});
 
 // Export
 module.exports = router;

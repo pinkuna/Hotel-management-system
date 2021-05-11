@@ -6,61 +6,67 @@ import { checkout } from '../models/Checkout.model';
 import { login } from '../models/login.model';
 import { register } from '../models/register.model';
 import { Report } from '../models/Reports.model';
-import { Response } from '../models/Respones.model';
+import { BookingRes, CheckoutRes, ReportRes, Response } from '../models/Respones.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NetworkUserService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   postRegister(Register: register): Observable<Response> {
-    return this.httpClient.post<Response>(
-      'http://localhost:8004/api/register',
-      Register,
+    return this.httpClient.post<Response>(`register`, Register,
       {
-        withCredentials: true, // <=========== important!
-      }
-    );
+        withCredentials: true
+      })
   }
 
   postlogin(Login: login): Observable<Response> {
-    return this.httpClient.post<Response>(
-      'http://localhost:8004/api/login',
-      Login,
+    return this.httpClient.post<Response>(`login`, Login,
       {
-        withCredentials: true, // <=========== important!
-      }
-    );
+        withCredentials: true
+      })
   }
 
   postbooking(booking: Booking): Observable<Response> {
-    return this.httpClient.post<Response>(
-      'http://localhost:8004/api/booking',
-      booking,
+    return this.httpClient.post<Response>(`booking`, booking,
       {
-        withCredentials: true, // <=========== important!
-      }
-    );
+        withCredentials: true
+      })
   }
 
   postReport(report: Report): Observable<Response> {
-    return this.httpClient.post<Response>(
-      'http://localhost:8004/api/report',
-      report,
+    return this.httpClient.post<Response>(`report`, report,
       {
-        withCredentials: true, // <=========== important!
-      }
-    );
+        withCredentials: true
+      })
   }
 
   postCheckout(Checkuot: checkout): Observable<Response> {
-    return this.httpClient.post<Response>(
-      'http://localhost:8004/api/checkout',
-      Checkuot,
+    return this.httpClient.post<Response>(`checkout`, Checkuot,
       {
-        withCredentials: true, // <=========== important!
-      }
-    );
+        withCredentials: true
+      })
+  }
+
+  getBooking(): Observable<BookingRes[]> {
+    return this.httpClient.get<BookingRes[]>(`booking/admin`,
+      {
+        withCredentials: true
+      })
+  }
+
+  getCheckout(): Observable<CheckoutRes[]> {
+    return this.httpClient.get<CheckoutRes[]>(`checkout/admin`,
+      {
+        withCredentials: true
+      })
+  }
+
+  getReport(): Observable<ReportRes[]> {
+    return this.httpClient.get<ReportRes[]>(`report/admin`,
+      {
+        withCredentials: true
+      })
   }
 }

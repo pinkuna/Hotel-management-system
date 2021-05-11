@@ -5,7 +5,7 @@ export class register {
     repassword: string;
     Usename: string;
     idcard: number;
-    phonNum: string;
+    phoneNum: string;
     email: any;
     address: string;
 }
@@ -17,12 +17,7 @@ export interface registerRequire {
     repassword: string;
     Usename: string;
     idcard: number;
-    phonNum: number;
+    phoneNum: number;
     email: any;
     address: string;
-}
-
-export interface registerRes {
-    status: string;
-    data: string;
 }

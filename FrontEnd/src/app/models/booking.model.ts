@@ -1,7 +1,7 @@
 
 export class Booking {
     name: string;
-    phonNum: number;
+    phoneNum: number;
     idcard: string;
     email: any
     date: any;
@@ -10,7 +10,7 @@ export class Booking {
 export interface booking {
     name: string;
     idcard: string;
-    phonnum: string;
+    phoneNum: string;
     email: any;
     roomNum: number;
     date: any;

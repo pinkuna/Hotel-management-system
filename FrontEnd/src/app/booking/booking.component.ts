@@ -32,11 +32,11 @@ export class BookingComponent implements OnInit {
     booking.name = values.name;
     booking.idcard = values.idcard;
     booking.email = values.email;
-    booking.phonNum = values.phonNum;
+    booking.phoneNum = values.phoneNum;
     booking.date = values.date;
     booking.roomNum = values.roomNum;
 
-    if (booking.idcard.length === 13 && booking.phonNum.toString().length === 9) {
+    if (booking.idcard.length === 13 && booking.phoneNum.toString().length === 9) {
       this.networkUserservice.postbooking(booking).subscribe(
         data => {
           console.log(data.status);
@@ -52,7 +52,5 @@ export class BookingComponent implements OnInit {
     } else {
       alert(`Form incorrect`)
     }
-
-
   }
 }
