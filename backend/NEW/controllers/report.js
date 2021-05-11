@@ -58,13 +58,14 @@ router.post("/", (request, response) => {
 });
 
 
-router.post("/admin", (request, response) => {
+router.get("/admin", (request, response) => {
   pool.connect((err, client, done) => {
     const books = `SELECT * from report;`;
     if (err) {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
+      done();
       if (err) {
         return console.error("error running query", err);
       }
@@ -83,6 +84,7 @@ router.post("/admin/delete", (request, response) => {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
+      done();
       if (err) {
         return console.error("error running query", err);
       }

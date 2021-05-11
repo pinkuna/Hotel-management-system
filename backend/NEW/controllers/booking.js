@@ -79,38 +79,46 @@ router.post("/", (request, response) => {
   }
 });
 
-router.post("/admin", (request, response) => {
+router.get("/admin", (request, response) => {
   pool.connect((err, client, done) => {
     const books = `SELECT * from booking;`;
     if (err) {
       return console.error("connection error", err);
     }
     client.query(books, function (err, result) {
+      done();
       if (err) {
         return console.error("error running query", err);
       }
+      var imports = (result.rows);
       response.status(200).json(result.rows);
+      response.end();
+    });
+  });
+  //console.log(imports)
+  //response.end();
+});
+
+router.post("/admin/delete", (request, response) => {
+  const paramid = request.query.id;
+  pool.connect((err, client, done) => {
+    const books = `DELETE FROM booking WHERE id = '${request.query.id}'`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(books, function (err, result) {
+      done();
+      if (err) {
+        return console.error("error running query", err);
+      }
+      response
+        .status(200)
+        .json({ status: "success", data: `delete table id ${paramid}` });
       response.end();
     });
   });
 });
 
-router.post("/admin/delete", (request, response) => {
-    const paramid = request.query.id;
-    pool.connect((err, client, done) => {
-      const books = `DELETE FROM booking WHERE id = '${request.query.id}'`;
-      if (err) {
-        return console.error("connection error", err);
-      }
-      client.query(books, function (err, result) {
-        if (err) {
-          return console.error("error running query", err);
-        }
-        response.status(200).json({status : 'success', data : `delete table id ${paramid}`});
-        response.end();
-      });
-    });
-  });
 
 // Export
 module.exports = router;
