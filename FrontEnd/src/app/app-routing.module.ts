@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminBookingComponent } from './admin-booking/admin-booking.component';
 import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
+import { AdminUsermangeComponent } from './admin-usermange/admin-usermange.component';
 import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './booking/booking.component';
 import { HomeComponent } from './home/home.component';
@@ -53,6 +54,9 @@ const routes: Routes = [
   },
   {
     path: 'admin-checkout', component: AdminCheckoutComponent
+  },
+  {
+    path: 'admin-usermanage', component: AdminUsermangeComponent
   }
 ];
 

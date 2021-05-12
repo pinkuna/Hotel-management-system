@@ -23,10 +23,6 @@ td.mat-column-name {
     width: 80px;
 }
 
-.searchForm {
-    height: 40px;
-}
-
 .over-lay>img {
     height: 80px;
     object-fit: cover;
@@ -81,4 +77,8 @@ td.mat-cell {
         width: 100% !important;
         margin-bottom: 12px;
     }
+}
+
+table {
+    width: 100%;
 }
