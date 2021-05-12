@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
 
 router.get("/admin", (request, response) => {
     pool.connect((err, client, done) => {
-        const books = `SELECT * from report;`;
+        const books = `SELECT * from register;`;
         if (err) {
             return console.error("connection error", err);
         }
@@ -87,10 +87,9 @@ router.get("/admin", (request, response) => {
 });
 
 
-router.post("/admin/delete", (request, response) => {
-    const paramid = request.query.id;
+router.delete("/admin/delete/:id", (request, response) => {
     pool.connect((err, client, done) => {
-        const books = `DELETE FROM report WHERE id = '${request.query.id}'`;
+        const books = `DELETE FROM report WHERE id = '${request.params.id}'`;
         if (err) {
             return console.error("connection error", err);
         }
@@ -102,23 +101,6 @@ router.post("/admin/delete", (request, response) => {
             response.end();
         });
         return done()   // call `done()` to release the client back to the pool
-    });
-});
-
-router.get("/admin/user", (request, response) => {
-    pool.connect((err, client, done) => {
-        const books = `SELECT * from register`;
-        if (err) {
-            return console.error("connection error", err);
-        }
-        client.query(books, function (err, result) {
-            done();
-            if (err) {
-                return console.error("error running query", err);
-            }
-            response.status(200).json(result.rows);
-            response.end();
-        });
     });
 });
 
