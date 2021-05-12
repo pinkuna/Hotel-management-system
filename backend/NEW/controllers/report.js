@@ -26,14 +26,15 @@ const pool = new pg.Pool({
 router.post("/", (request, response) => {
   if (request.session.loggedin) {
     let reposts = {
-      text: `insert into report(roomNum, name, phoneNum, theProblems, Requre, title) values ($1, $2, $3, $4, $5, $6);`,
+      text: `insert into report(roomNum, name, phoneNum, theProblems, Requre, title, admin_check) values ($1, $2, $3, $4, $5, $6);`,
       values: [
         request.body.roomNum,
         request.body.name,
         request.body.phoneNum,
         request.body.theProblems,
         request.body.Requre,
-        request.body.title
+        request.body.title,
+        false
       ],
     };
     pool.connect((err, client, done) => {w
@@ -76,10 +77,9 @@ router.get("/admin", (request, response) => {
 });
 
 
-router.delete("/delete", (request, response) => {
-  const paramid = request.query.id;
+router.delete("/admin/delete/:id", (request, response) => {
   pool.connect((err, client, done) => {
-    const books = `DELETE FROM report WHERE id = '${request.query.id}'`;
+    const books = `DELETE FROM report WHERE id = '${request.params.id}'`;
     if (err) {
       return console.error("connection error", err);
     }
@@ -89,6 +89,40 @@ router.delete("/delete", (request, response) => {
         return console.error("error running query", err);
       }
       response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
+      response.end();
+    });
+    return done()   // call `done()` to release the client back to the pool
+  });
+});
+
+router.put("/admin/check/:id", (request, response) => {
+  pool.connect((err, client, done) => {
+    const upcheck = `UPDATE report SET admin_check = true WHERE id = '${request.params.id}'`;  //WHERE id = '${request.params.id}'
+    if (err) {
+      return console.error("connection error", err);
+    }
+      client.query(upcheck, function (err, result) {
+        response.status(200).json({ status: "success", data: result.rowCount});
+        response.end();
+        if (err) {
+          return console.error("error running query", err);
+        }
+      });
+    return done(); // call `done()` to release the client back to the pool
+  });
+});
+
+router.get("/admin/:id", (request, response) => {
+  pool.connect((err, client, done) => {
+    const reporta = `SELECT * from report WHERE id = '${request.params.id}';`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(reporta, function (err, result) {
+      if (err) {
+        return console.error("error running query", err);
+      }
+      response.status(200).json(result.rows);
       response.end();
     });
     return done()   // call `done()` to release the client back to the pool

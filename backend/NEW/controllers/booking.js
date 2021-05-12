@@ -51,7 +51,7 @@ router.post("/", (request, response) => {
           return done();
         } else {
           let insert = {
-            text: `insert into booking (name, phoneNum, idcard, email, date, loginid) values ($1, $2, $3, $4, $5, $6);`,
+            text: `insert into booking (name, phoneNum, idcard, email, date, loginid, admin_check) values ($1, $2, $3, $4, $5, $6, $7);`,
             values: [
               request.body.name,
               request.body.phoneNum,
@@ -59,6 +59,7 @@ router.post("/", (request, response) => {
               request.body.email,
               request.body.date,
               request.session.userid,
+              false
             ],
           };
           client.query(insert, function (err, result) {
@@ -103,12 +104,12 @@ router.put("/admin/check/:id", (request, response) => {
       return console.error("connection error", err);
     }
       client.query(upcheck, function (err, result) {
+        response.status(200).json({ status: "success", data: result.rowCount});
+        response.end();
         if (err) {
           return console.error("error running query", err);
         }
       });
-      response.status(200).json({ status: "success" });
-      response.end();
     return done(); // call `done()` to release the client back to the pool
   });
 });
