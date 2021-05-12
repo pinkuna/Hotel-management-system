@@ -23,12 +23,13 @@ const pool = new pg.Pool({
 router.post("/", (request, response) => {
     if (request.session.loggedin) {
         let reposts = {
-            text: `insert into checkout(roomnum, name, phonenum, date) values ($1, $2, $3, $4);`,
+            text: `insert into checkout(roomnum, name, phonenum, date, admin_check) values ($1, $2, $3, $4, $5);`,
             values: [
                 request.body.roomNum,
                 request.body.name,
                 request.body.phonNum,
                 request.body.date,
+                false
             ],
         };
         pool.connect((err, client, done) => {
@@ -66,14 +67,14 @@ router.get("/admin", (request, response) => {
             response.status(200).json(result.rows);
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 
 
-router.post("/admin/delete", (request, response) => {
-    const paramid = request.query.id;
+router.delete("/admin/delete/:id", (request, response) => {
     pool.connect((err, client, done) => {
-        const books = `DELETE FROM checkout WHERE id = '${request.query.id}'`;
+        const books = `DELETE FROM checkout WHERE id = '${request.params.id}'`;
         if (err) {
             return console.error("connection error", err);
         }
@@ -84,8 +85,25 @@ router.post("/admin/delete", (request, response) => {
             response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
             response.end();
         });
+        return done()   // call `done()` to release the client back to the pool
     });
 });
 
+router.put("/admin/check/:id", (request, response) => {
+    pool.connect((err, client, done) => {
+      const upcheck = `UPDATE checkout SET admin_check = true WHERE id = '${request.params.id}'`;  //WHERE id = '${request.params.id}'
+      if (err) {
+        return console.error("connection error", err);
+      }
+        client.query(upcheck, function (err, result) {
+            response.status(200).json({ status: "success", data: result.rowCount});
+            response.end();
+          if (err) {
+            return console.error("error running query", err);
+          }
+        });
+      return done(); // call `done()` to release the client back to the pool
+    });
+  });
 
 module.exports = router;
