@@ -40,7 +40,6 @@ router.post("/", (request, response) => {
                         request.session.admin = data[0].admin;
                         request.session.username = username;
                         request.session.userid = data[0].id;
-                        console.log(request.session)
                         response.status(200).json({ status: 'success', data: 'login completed', admin: data[0].admin });
                         //response.status(200).redirect('/home');
                     } else {
