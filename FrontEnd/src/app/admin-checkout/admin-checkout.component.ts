@@ -17,7 +17,7 @@ export class AdminCheckoutComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'date', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'date', 'admin_check'];
   dataSource = new MatTableDataSource<CheckoutRes>();
   textSearch: any
 
@@ -34,7 +34,7 @@ export class AdminCheckoutComponent implements OnInit {
       data => {
         this.dataSource.data = data
       }, error => {
-
+        alert(`ERROR`)
       }
     )
   }
@@ -44,13 +44,27 @@ export class AdminCheckoutComponent implements OnInit {
     if (event) {
       fliterValue = (event.target as HTMLInputElement).value;
     }
-    console.log(typeof fliterValue);
+    // console.log(typeof fliterValue);
     this.dataSource.filter = fliterValue.trim().toLowerCase();
   }
 
   clearSearch() {
     this.textSearch = '';
     this.search(null!);
+  }
+
+  onClickaction(id: number) {
+    this.networkUserService.putcheckout(id).subscribe(
+      data => {
+        if (data.status == 'success') {
+          // alert(data.data)
+          window.location.href = '/admin-checkout'
+        }
+      },
+      error => {
+
+      }
+    )
   }
 }
 

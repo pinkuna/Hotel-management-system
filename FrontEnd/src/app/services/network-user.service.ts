@@ -83,4 +83,19 @@ export class NetworkUserService {
         withCredentials: true
       })
   }
+
+  putcheckout(id: number): Observable<Response> {
+    return this.httpClient.put<Response>(`checkout/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
+  putreport(id: number): Observable<Response> {
+    return this.httpClient.put<Response>(`report/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
 }
