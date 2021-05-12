@@ -11,6 +11,7 @@ export interface BookingRes {
     phonenum: number;
     email: string;
     date: Date;
+    admin_check: boolean;
 }
 
 export interface ReportRes {
@@ -21,6 +22,7 @@ export interface ReportRes {
     theproblems: string;
     requre: string;
     title: string;
+    admin_check: boolean;
 }
 
 export interface CheckoutRes {
@@ -29,6 +31,7 @@ export interface CheckoutRes {
     name: string;
     phonenum: number;
     date: Date;
+    admin_check: boolean;
 }
 
 export interface UserRes {

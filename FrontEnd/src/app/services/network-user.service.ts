@@ -6,7 +6,7 @@ import { checkout } from '../models/Checkout.model';
 import { login } from '../models/login.model';
 import { register } from '../models/register.model';
 import { Report } from '../models/Reports.model';
-import { BookingRes, CheckoutRes, ReportRes, Response } from '../models/Respones.model';
+import { BookingRes, CheckoutRes, ReportRes, Response, UserRes } from '../models/Respones.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,4 +69,33 @@ export class NetworkUserService {
         withCredentials: true
       })
   }
+
+  getUseser(): Observable<UserRes[]> {
+    return this.httpClient.get<UserRes[]>(`register/admin/user`,
+      {
+        withCredentials: true
+      })
+  }
+
+  putbooking(id: number): Observable<Response> {
+    return this.httpClient.put<Response>(`booking/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
+  putcheckout(id: number): Observable<Response> {
+    return this.httpClient.put<Response>(`checkout/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
+  putreport(id: number): Observable<Response> {
+    return this.httpClient.put<Response>(`report/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
 }

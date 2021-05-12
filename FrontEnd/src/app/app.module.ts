@@ -40,6 +40,7 @@ import { AdminReportComponent } from './admin-report/admin-report.component';
 import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
 import { httpInterceptorProviders } from './interceptors';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AdminUsermangeComponent } from './admin-usermange/admin-usermange.component';
 
 
 
@@ -62,7 +63,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AdminComponent,
     AdminBookingComponent,
     AdminReportComponent,
-    AdminCheckoutComponent
+    AdminCheckoutComponent,
+    AdminUsermangeComponent
   ],
   imports: [
     BrowserModule,

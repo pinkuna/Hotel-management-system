@@ -2,23 +2,21 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { CheckoutRes } from '../models/Respones.model';
+import { UserRes } from '../models/Respones.model';
 import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
-  selector: 'app-admin-checkout',
-  templateUrl: './admin-checkout.component.html',
-  styleUrls: ['./admin-checkout.component.css']
+  selector: 'app-admin-usermange',
+  templateUrl: './admin-usermange.component.html',
+  styleUrls: ['./admin-usermange.component.css']
 })
-
-
-export class AdminCheckoutComponent implements OnInit {
+export class AdminUsermangeComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'date', 'admin_check'];
-  dataSource = new MatTableDataSource<CheckoutRes>();
+  displayedColumns: string[] = ['id', 'usename', 'usersurname', 'username', 'idcard', 'phonenum', 'email', 'action'];
+  dataSource = new MatTableDataSource<UserRes>();
   textSearch: any
 
   constructor(private networkUserService: NetworkUserService) { }
@@ -26,15 +24,15 @@ export class AdminCheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
-    this.feedata();
+    this.feedata()
   }
 
   feedata() {
-    this.networkUserService.getCheckout().subscribe(
+    this.networkUserService.getUseser().subscribe(
       data => {
         this.dataSource.data = data
       }, error => {
-        alert(`ERROR`)
+
       }
     )
   }
@@ -44,7 +42,7 @@ export class AdminCheckoutComponent implements OnInit {
     if (event) {
       fliterValue = (event.target as HTMLInputElement).value;
     }
-    // console.log(typeof fliterValue);
+    console.log(typeof fliterValue);
     this.dataSource.filter = fliterValue.trim().toLowerCase();
   }
 
@@ -53,21 +51,4 @@ export class AdminCheckoutComponent implements OnInit {
     this.search(null!);
   }
 
-  onClickaction(id: number) {
-    this.networkUserService.putcheckout(id).subscribe(
-      data => {
-        if (data.status == 'success') {
-          // alert(data.data)
-          window.location.href = '/admin-checkout'
-        }
-      },
-      error => {
-
-      }
-    )
-  }
 }
-
-
-
-

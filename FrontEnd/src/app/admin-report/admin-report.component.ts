@@ -15,7 +15,7 @@ export class AdminReportComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'theproblems', 'requre', 'title', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'theproblems', 'requre', 'title', 'admin_check'];
   dataSource = new MatTableDataSource<ReportRes>();
   textSearch: any
 
@@ -50,6 +50,18 @@ export class AdminReportComponent implements OnInit {
   clearSearch() {
     this.textSearch = '';
     this.search(null!);
+  }
+
+  onClickaction(id: number) {
+    this.networkUserService.putreport(id).subscribe(
+      data => {
+        if (data.status == 'success') {
+          window.location.href = '/admin-report'
+        }
+      }, error => {
+
+      }
+    )
   }
 
 }

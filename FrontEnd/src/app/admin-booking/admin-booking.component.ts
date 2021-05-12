@@ -16,7 +16,7 @@ export class AdminBookingComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
 
-  displayedColumns: string[] = ['id', 'name', 'idcard', 'phonenum', 'email', 'roomNum', 'date', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'idcard', 'phonenum', 'email', 'roomNum', 'date', 'admin_check'];
   dataSource = new MatTableDataSource<BookingRes>();
   textSearch: any;
 
@@ -26,6 +26,7 @@ export class AdminBookingComponent implements OnInit {
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
     this.feedata();
+
   }
 
   feedata() {
@@ -50,6 +51,20 @@ export class AdminBookingComponent implements OnInit {
   clearSearch() {
     this.textSearch = '';
     this.search(null!);
+  }
+
+  onAction(id: number) {
+    this.networkUserservic.putbooking(id).subscribe(
+      data => {
+        if (data.status == 'success') {
+          window.location.href = '/admin-booking'
+        } else {
+          alert("error 404")
+        }
+      }, error => {
+
+      }
+    )
   }
 }
 
