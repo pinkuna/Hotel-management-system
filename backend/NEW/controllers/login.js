@@ -41,7 +41,7 @@ router.post("/", (request, response) => {
                         request.session.username = username;
                         request.session.userid = data[0].id;
                         console.log(request.session)
-                        response.status(200).json({ status: 'success', data: 'login completed' });
+                        response.status(200).json({ status: 'success', data: 'login completed', admin: data[0].admin });
                         //response.status(200).redirect('/home');
                     } else {
                         request.session.loggedin = false;

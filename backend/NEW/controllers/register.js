@@ -45,11 +45,12 @@ router.post('/', (req, res) => {
                         idcard,
                         phoneNum,
                         email,
-                        address
-                    ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
+                        address,
+                        admin
+                    ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
                     values: [req.body.username, req.body.usersurname, hash_password,
                     req.body.Usename, req.body.idcard, req.body.phoneNum,
-                    req.body.email, req.body.address
+                    req.body.email, req.body.address, false
                     ]
                 }
                 client.query(queryMessage, (err, result) => {
