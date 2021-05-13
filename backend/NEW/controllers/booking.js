@@ -101,7 +101,7 @@ router.put("/admin/check", (request, response) => {
     var idarray = request.body.id;
     var data_string = idarray.toString();
     pool.connect((err, client, done) => {
-        const upcheck = `UPDATE booking SET admin_check = false WHERE id in (${data_string})`; 
+        const upcheck = `UPDATE booking SET admin_check = true WHERE id in (${data_string})`; 
         if (err) {
             return console.error("connection error", err);
         }
