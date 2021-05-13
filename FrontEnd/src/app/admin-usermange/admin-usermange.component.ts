@@ -50,5 +50,14 @@ export class AdminUsermangeComponent implements OnInit {
     this.textSearch = '';
     this.search(null!);
   }
-
+  onClickdelet(id: number) {
+    this.networkUserService.deleteUser(id).subscribe(
+      data => {
+        if (data.status == 'success') {
+          alert(data.data)
+          window.location.href = '/admin-usermanage'
+        }
+      }
+    )
+  }
 }

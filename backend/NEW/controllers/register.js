@@ -26,7 +26,7 @@ const pool = new pg.Pool({
 // path = localhost:8004/api/register
 router.post('/', (req, res) => {
 
-    pool.connect(function (err, client, done) {
+    pool.connect(function(err, client, done) {
         if (err) {
             return console.error('connection error', err);
         }
@@ -48,8 +48,8 @@ router.post('/', (req, res) => {
                         address
                     ) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
                     values: [req.body.username, req.body.usersurname, hash_password,
-                    req.body.Usename, req.body.idcard, req.body.phoneNum,
-                    req.body.email, req.body.address
+                        req.body.Usename, req.body.idcard, req.body.phoneNum,
+                        req.body.email, req.body.address
                     ]
                 }
                 client.query(queryMessage, (err, result) => {
@@ -64,7 +64,7 @@ router.post('/', (req, res) => {
                 res.end()
             }
         })
-        return done()   // call `done()` to release the client back to the pool
+        return done() // call `done()` to release the client back to the pool
     })
 })
 
@@ -75,14 +75,14 @@ router.get("/admin", (request, response) => {
         if (err) {
             return console.error("connection error", err);
         }
-        client.query(books, function (err, result) {
+        client.query(books, function(err, result) {
             if (err) {
                 return console.error("error running query", err);
             }
             response.status(200).json(result.rows);
             response.end();
         });
-        return done()   // call `done()` to release the client back to the pool
+        return done() // call `done()` to release the client back to the pool
     });
 });
 
@@ -93,14 +93,14 @@ router.delete("/admin/delete/:id", (request, response) => {
         if (err) {
             return console.error("connection error", err);
         }
-        client.query(books, function (err, result) {
+        client.query(books, function(err, result) {
             if (err) {
                 return console.error("error running query", err);
             }
-            response.status(200).json({ status: 'success', data: `delete table id ${paramid}` });
+            response.status(200).json({ status: 'success', data: `delete user` });
             response.end();
         });
-        return done()   // call `done()` to release the client back to the pool
+        return done() // call `done()` to release the client back to the pool
     });
 });
 
