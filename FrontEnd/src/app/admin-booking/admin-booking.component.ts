@@ -19,14 +19,17 @@ export class AdminBookingComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'idcard', 'phonenum', 'email', 'roomNum', 'date', 'admin_check'];
   dataSource = new MatTableDataSource<BookingRes>();
   textSearch: any;
+  checklist: number[] = []
+  indexarray: number = 0
+  add: boolean = true
 
   constructor(private networkUserservic: NetworkUserService) { }
+
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
     this.feedata();
-
   }
 
   feedata() {
@@ -53,18 +56,24 @@ export class AdminBookingComponent implements OnInit {
     this.search(null!);
   }
 
-  onAction(id: number) {
-    this.networkUserservic.putbooking(id).subscribe(
-      data => {
-        if (data.status == 'success') {
-          window.location.href = '/admin-booking'
-        } else {
-          alert("error 404")
-        }
-      }, error => {
-
+  oncheck(id: number) {
+    this.checklist.forEach((Ifchecklist) => {
+      if (Ifchecklist === id) {
+        this.checklist.splice(this.indexarray, 1)
+        console.log(this.indexarray);
+        this.add = false
       }
-    )
+      else {
+        this.indexarray++
+      }
+    })
+    if (this.add == true) {
+      this.checklist.push(id)
+      this.indexarray = 0
+    }
+    else {
+      this.indexarray = 0
+    }
   }
 }
 

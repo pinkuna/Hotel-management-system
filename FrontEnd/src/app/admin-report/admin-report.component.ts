@@ -18,6 +18,9 @@ export class AdminReportComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'theproblems', 'requre', 'title', 'admin_check'];
   dataSource = new MatTableDataSource<ReportRes>();
   textSearch: any
+  checklist: number[] = []
+  indexarray: number = 0
+  add: boolean = true
 
 
   constructor(private networkUserService: NetworkUserService) { }
@@ -52,16 +55,24 @@ export class AdminReportComponent implements OnInit {
     this.search(null!);
   }
 
-  onClickaction(id: number) {
-    this.networkUserService.putreport(id).subscribe(
-      data => {
-        if (data.status == 'success') {
-          window.location.href = '/admin-report'
-        }
-      }, error => {
-
+  oncheck(id: number) {
+    this.checklist.forEach((Ifchecklist) => {
+      if (Ifchecklist === id) {
+        this.checklist.splice(this.indexarray, 1)
+        console.log(this.indexarray);
+        this.add = false
       }
-    )
+      else {
+        this.indexarray++
+      }
+    })
+    if (this.add == true) {
+      this.checklist.push(id)
+      this.indexarray = 0
+    }
+    else {
+      this.indexarray = 0
+    }
   }
 
 }

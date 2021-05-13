@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8 mt-3 table-responsive">
 
-    <div class="d-flex justify-content-between aling-items-center p-3 search_form">
+    <div class="d-flex justify-content-between aling-items-center p-1 search_form">
         <mat-form-field appearance="outline" class="w-50">
             <mat-label>Search</mat-label>
             <input [(ngModel)]="textSearch" (keyup)="search($event)" matInput placeholder="ID,Username,Room">
@@ -9,6 +9,9 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
+        <button type="button" class="btn btn-primary maginbutton">
+            Submit Checklist
+        </button>
     </div>
 
     <table mat-table [dataSource]="dataSource" class="w-100 table-striped table-hover">
@@ -58,11 +61,12 @@
         <ng-container matColumnDef="admin_check">
             <th mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Action </th>
             <td mat-cell *matCellDef="let baba" class="text-center">
-                <button mat-icon-button (click)="onAction(baba.id)">
-                    <mat-icon *ngIf="baba.admin_check ? true : false" class="material-icons-outlined">done</mat-icon>
-                    <mat-icon *ngIf="baba.admin_check ? false : true" class="material-icons-outlined">crop_square
-                    </mat-icon>
-                </button>
+                <section class="example-section">
+                    <mat-checkbox *ngIf="baba.admin_check" class="example-margin" (click)="oncheck(baba.id)">
+                    </mat-checkbox>
+                    <mat-checkbox *ngIf="!baba.admin_check" class="example-margin" [disabled]="true">
+                    </mat-checkbox>
+                </section>
             </td>
         </ng-container>
 

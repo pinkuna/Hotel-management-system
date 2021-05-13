@@ -20,6 +20,9 @@ export class AdminCheckoutComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'phonenum', 'roomnum', 'date', 'admin_check'];
   dataSource = new MatTableDataSource<CheckoutRes>();
   textSearch: any
+  checklist: number[] = []
+  indexarray: number = 0
+  add: boolean = true
 
   constructor(private networkUserService: NetworkUserService) { }
 
@@ -53,18 +56,24 @@ export class AdminCheckoutComponent implements OnInit {
     this.search(null!);
   }
 
-  onClickaction(id: number) {
-    this.networkUserService.putcheckout(id).subscribe(
-      data => {
-        if (data.status == 'success') {
-          // alert(data.data)
-          window.location.href = '/admin-checkout'
-        }
-      },
-      error => {
-
+  oncheck(id: number) {
+    this.checklist.forEach((Ifchecklist) => {
+      if (Ifchecklist === id) {
+        this.checklist.splice(this.indexarray, 1)
+        console.log(this.indexarray);
+        this.add = false
       }
-    )
+      else {
+        this.indexarray++
+      }
+    })
+    if (this.add == true) {
+      this.checklist.push(id)
+      this.indexarray = 0
+    }
+    else {
+      this.indexarray = 0
+    }
   }
 }
 

@@ -20,6 +20,7 @@ import { NewsComponent } from './news/news.component';
 import { MatCardModule } from '@angular/material/card';
 import { ReportComponent } from './serve/report/report.component';
 import { AgreementComponent } from './serve/agreement/agreement.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -86,7 +87,8 @@ import { AdminUsermangeComponent } from './admin-usermange/admin-usermange.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   providers: [
     httpInterceptorProviders

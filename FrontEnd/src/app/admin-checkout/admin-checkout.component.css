@@ -39,11 +39,24 @@ td.mat-column-name {
 }
 
 td.mat-cell {
-    padding: 8px;
+    padding: 8px 0;
 }
 
 .table-hover tr:hover {
     background-color: #d6f5d1;
+}
+
+.example-margin {
+    margin: 0 12px;
+}
+
+.example-section {
+    margin: 12px 0;
+}
+
+.maginbutton {
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
 }
 
 ::ng-deep th.mat-column-price>.mat-sort-header-container {
@@ -54,8 +67,9 @@ td.mat-cell {
     justify-content: center;
 }
 
-::ng-deep .mat-sort-header-arrow {
-    color: red;
+::ng-deep .mat-sort-header-arrow,
+::ng-deep .mat-sort-header-sorted {
+    color: rgb(57, 212, 161);
 }
 
 @media(max-width: 600px) {

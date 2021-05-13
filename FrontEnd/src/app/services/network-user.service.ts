@@ -71,7 +71,7 @@ export class NetworkUserService {
   }
 
   getUseser(): Observable<UserRes[]> {
-    return this.httpClient.get<UserRes[]>(`register/admin/user`,
+    return this.httpClient.get<UserRes[]>(`register/admin`,
       {
         withCredentials: true
       })
@@ -93,6 +93,13 @@ export class NetworkUserService {
 
   putreport(id: number): Observable<Response> {
     return this.httpClient.put<Response>(`report/admin/check/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
+  deleteUser(id: number): Observable<Response> {
+    return this.httpClient.delete<Response>(`register/admin/delete/${id}`,
       {
         withCredentials: true
       })
