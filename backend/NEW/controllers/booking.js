@@ -97,9 +97,11 @@ router.get("/admin", (request, response) => {
     });
 });
 
-router.put("/admin/check/:id", (request, response) => {
+router.put("/admin/check", (request, response) => {
+    var idarray = request.body.id;
+    var data_string = idarray.toString();
     pool.connect((err, client, done) => {
-        const upcheck = `UPDATE booking SET admin_check = true WHERE id = '${request.params.id}'`;
+        const upcheck = `UPDATE booking SET admin_check = true WHERE id in (${data_string})`; 
         if (err) {
             return console.error("connection error", err);
         }
