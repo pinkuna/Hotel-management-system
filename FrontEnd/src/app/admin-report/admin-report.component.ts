@@ -74,6 +74,24 @@ export class AdminReportComponent implements OnInit {
       this.indexarray = 0
     }
   }
+  onclickSubmitcheck() {
+    if (this.checklist.length !== 0) {
+      this.networkUserService.putreportcheck(this.checklist).subscribe(
+        data => {
+          if (data.status == 'success') {
+            alert(data.data)
+            window.location.href = '/admin-report'
+          }
+          else {
+            alert(`Error 404`)
+          }
+        })
+    }
+    else {
+      alert(`กรุณา Checklist ก่อน`)
+    }
+  }
+
 
 }
 

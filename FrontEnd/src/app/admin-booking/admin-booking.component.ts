@@ -75,6 +75,24 @@ export class AdminBookingComponent implements OnInit {
       this.indexarray = 0
     }
   }
+
+  onclickSubmitcheck() {
+    if (this.checklist.length !== 0) {
+      this.networkUserservic.putbookingcheck(this.checklist).subscribe(
+        data => {
+          if (data.status == 'success') {
+            alert(data.data)
+            window.location.href = '/admin-booking'
+          }
+          else {
+            alert(`Error 404`)
+          }
+        })
+    }
+    else {
+      alert(`กรุณา Checklist ก่อน`)
+    }
+  }
 }
 
 

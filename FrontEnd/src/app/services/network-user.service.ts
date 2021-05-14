@@ -6,13 +6,15 @@ import { checkout } from '../models/Checkout.model';
 import { login } from '../models/login.model';
 import { register } from '../models/register.model';
 import { Report } from '../models/Reports.model';
-import { BookingRes, CheckoutRes, ReportRes, Response, UserRes } from '../models/Respones.model';
+import { BookingRes, CheckoutRes, IDfrome, ReportRes, Response, UserRes } from '../models/Respones.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NetworkUserService {
   constructor(private httpClient: HttpClient) { }
+
+
 
   postRegister(Register: register): Observable<Response> {
     return this.httpClient.post<Response>(`register`, Register,
@@ -70,6 +72,13 @@ export class NetworkUserService {
       })
   }
 
+  getReports(id: number): Observable<ReportRes> {
+    return this.httpClient.get<ReportRes>(`report/admin/${id}`,
+      {
+        withCredentials: true
+      })
+  }
+
   getUseser(): Observable<UserRes[]> {
     return this.httpClient.get<UserRes[]>(`register/admin`,
       {
@@ -77,22 +86,23 @@ export class NetworkUserService {
       })
   }
 
-  putbooking(id: number): Observable<Response> {
-    return this.httpClient.put<Response>(`booking/admin/check/${id}`,
+  putbookingcheck(id: number[]): Observable<Response> {
+    console.log(this.makeIDcheck(id));
+    return this.httpClient.put<Response>(`booking/admin/check`, this.makeIDcheck(id),
       {
         withCredentials: true
       })
   }
 
-  putcheckout(id: number): Observable<Response> {
-    return this.httpClient.put<Response>(`checkout/admin/check/${id}`,
+  putcheckoutcheck(id: number[]): Observable<Response> {
+    return this.httpClient.put<Response>(`checkout/admin/check`, this.makeIDcheck(id),
       {
         withCredentials: true
       })
   }
 
-  putreport(id: number): Observable<Response> {
-    return this.httpClient.put<Response>(`report/admin/check/${id}`,
+  putreportcheck(id: number[]): Observable<Response> {
+    return this.httpClient.put<Response>(`report/admin/check/`, this.makeIDcheck(id),
       {
         withCredentials: true
       })
@@ -103,6 +113,11 @@ export class NetworkUserService {
       {
         withCredentials: true
       })
+  }
+
+  makeIDcheck(ID: number[]) {
+    let Idform = { "id": ID.toString() }
+    return Idform
   }
 
 }
