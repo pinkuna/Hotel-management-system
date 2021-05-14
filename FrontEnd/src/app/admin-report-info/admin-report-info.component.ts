@@ -13,9 +13,9 @@ export class AdminReportInfoComponent implements OnInit {
 
   @ViewChild('reportForm', { static: true }) reportForm: NgForm
 
+
   constructor(private activatedRoute: ActivatedRoute,
     private networkUserService: NetworkUserService,
-    private location: Location,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -29,13 +29,15 @@ export class AdminReportInfoComponent implements OnInit {
   feedData(id: number) {
     this.networkUserService.getReports(id).subscribe(
       data => {
-        var { id, roomnum, name, phonenum, theproblems, requre, title, admin_check } = { ...data }
-        this.reportForm.setValue({ roomnum, name, phonenum, theproblems, requre, title })
+        var { id, roomnum, name, phonenum, requre, title, theproblems, admin_check } = { ...data[0] }
+        this.reportForm.setValue({ id, roomnum, name, phonenum, requre, title, theproblems, admin_check });
       },
       error => {
         this.router.navigate(["/admin-report"])
+        alert(`error`)
       }
     )
+
   }
 
 }

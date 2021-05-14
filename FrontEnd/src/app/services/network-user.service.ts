@@ -72,8 +72,8 @@ export class NetworkUserService {
       })
   }
 
-  getReports(id: number): Observable<ReportRes> {
-    return this.httpClient.get<ReportRes>(`report/admin/${id}`,
+  getReports(id: number): Observable<ReportRes[]> {
+    return this.httpClient.get<ReportRes[]>(`report/admin/${id}`,
       {
         withCredentials: true
       })

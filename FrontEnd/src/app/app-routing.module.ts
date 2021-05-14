@@ -60,7 +60,7 @@ const routes: Routes = [
     path: 'admin-usermanage', component: AdminUsermangeComponent
   },
   {
-    path: 'admin-report/info', component: AdminReportInfoComponent
+    path: 'admin-report/info/:id', component: AdminReportInfoComponent
   }
 ];
 
