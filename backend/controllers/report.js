@@ -26,7 +26,7 @@ const pool = new pg.Pool({
 router.post("/", (request, response) => {
   if (request.session.loggedin) {
     let reposts = {
-      text: `insert into report(roomNum, name, phoneNum, theProblems, Requre, title, admin_check) values ($1, $2, $3, $4, $5, $6);`,
+      text: `insert into report(roomNum, name, phoneNum, theProblems, Requre, title, admin_check) values ($1, $2, $3, $4, $5, $6, $7);`,
       values: [
         request.body.roomNum,
         request.body.name,
@@ -37,7 +37,7 @@ router.post("/", (request, response) => {
         false
       ],
     };
-    pool.connect((err, client, done) => {w
+    pool.connect((err, client, done) => {
       if (err) {
         return console.error("connection error", err);
       }
