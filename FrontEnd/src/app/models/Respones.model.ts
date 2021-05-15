@@ -1,6 +1,10 @@
 export interface Response {
     data: string;
     status: string;
+    admin: boolean;
+    usename: string;
+    email: string;
+    phoneNum: number;
 }
 
 export interface BookingRes {
