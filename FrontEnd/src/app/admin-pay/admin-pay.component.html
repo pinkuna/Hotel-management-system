@@ -1,0 +1,65 @@
+<div class="mat-elevation-z8 mt-3 table-responsive">
+
+    <div class="d-flex justify-content-between align-items-center p-3 search_form">
+        <mat-form-field appearance="outline" class="w-50">
+            <mat-label>Search products</mat-label>
+            <input [(ngModel)]="textSearch" (keyup)="search($event)" matInput placeholder="name, price, stock">
+            <mat-icon matSuffix *ngIf="!textSearch">search</mat-icon>
+            <button (click)="clearSearch()" mat-icon-button matSuffix *ngIf="textSearch">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" [routerLink]="['/stock/create']">
+            <mat-icon>add</mat-icon>
+            New Product
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table mat-table matSort [dataSource]="dataSource" class="w-100 table-striped table-hover">
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Image </th>
+                <td mat-cell *matCellDef="let data">
+                    <div class="over-lay mx-auto d-block border-top border-left border-right rounded-top">
+                        <img [src]="data.image" class="w-100 bg-light rounded-top" alt="">
+                        <div class="over-lay-text text-center mat-small"> {{ data.id }} </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef class="text-uppercase"> Name </th>
+                <td mat-cell *matCellDef="let data" class="text-truncate"> {{ data.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef class="text-uppercase text-right"> Price </th>
+                <td mat-cell *matCellDef="let data" class="text-right"> {{ data.price | number : '1.2-2' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Stock </th>
+                <td mat-cell *matCellDef="let data" class="text-center"> {{ data.stock | number }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef class="text-uppercase text-center"> Action </th>
+                <td mat-cell *matCellDef="let data" class="text-center">
+                    <button mat-icon-button [routerLink]="['/stock/edit', data.id]">
+                        <mat-icon class="material-icons-outlined">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+</div>

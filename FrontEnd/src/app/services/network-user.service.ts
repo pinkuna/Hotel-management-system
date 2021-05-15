@@ -79,6 +79,13 @@ export class NetworkUserService {
       })
   }
 
+  getPay(): Observable<ReportRes[]> {
+    return this.httpClient.get<ReportRes[]>(`pay/admin`,
+      {
+        withCredentials: true
+      })
+  }
+
   getUseser(): Observable<UserRes[]> {
     return this.httpClient.get<UserRes[]>(`register/admin`,
       {
