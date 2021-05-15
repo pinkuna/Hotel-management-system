@@ -128,7 +128,7 @@ router.put("/admin/check", (request, response) => {
   });
 });
 
-router.get("/adminimage", (request, response) => {
+router.get("/admin/name/image", (request, response) => {
   pool.connect((err, client, done) => {
     const payid = `SELECT * from pay WHERE image = '${request.body.image}';`;
     if (err) {
@@ -139,7 +139,7 @@ router.get("/adminimage", (request, response) => {
         return console.error("error running query", err);
       }
       //result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
-      response.status(200).json(result.rows);
+      response.status(200).json(`http://localhost:8004/images/${result.rows[0].image}`);
       response.end();
     });
     return done(); // call `done()` to release the client back to the pool
