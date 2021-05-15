@@ -15,24 +15,26 @@ const pool = new pg.Pool({
 });
 
 router.post("/", upload, (request, response) => {
-  if (request.session.loggedin) {
-    upload(request, response, function (err) {
-      if (err instanceof multer.MulterError) {
-        console.log("error: " + JSON.stringify(err));
-      } else if (err) {
-        console.log("error: " + JSON.stringify(err));
-      }
-      var fileName = request.file.filename;
+  const lodes = request.body;
+  upload(request, response, function (err) {
+    if (err instanceof multer.MulterError) {
+      console.log("error: " + JSON.stringify(err));
+    } else if (err) {
+      console.log("error: " + JSON.stringify(err));
+    }
+  });
+    var fileName = request.file.filename;
+  if (request.session.loggedin) { //request.session.loggedin
       //response.send(`post product : ${request.params.id},${fileName}`);
       let payinsert = {
         text: `insert into pay(roomnum, name, phonenum, time, amount, bank, image, admin_check) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
         values: [
-          request.body.roomNum,
-          request.body.name,
-          request.body.phonNum,
-          request.body.time,
-          request.body.amount,
-          request.body.bank,
+          lodes.roomNum,
+          lodes.name,
+          lodes.phonNum,
+          lodes.time,
+          lodes.amount,
+          lodes.bank,
           fileName,
           false,
         ],
@@ -51,7 +53,6 @@ router.post("/", upload, (request, response) => {
           return done();
         });
       });
-    });
     //response.status(201);
   } else {
     response.status(200).json({ status: "failed", data: "please login" });
@@ -70,7 +71,8 @@ router.get("/admin", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
-      response.status(200).json(result.rows);
+     result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
+      response.status(200).json({NewData: result.rows});
       response.end();
     });
     return done(); // call `done()` to release the client back to the pool
@@ -99,6 +101,7 @@ router.get("/admin/:id", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
+      result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
       response.status(200).json(result.rows);
       response.end();
     });
