@@ -106,7 +106,7 @@ export class NetworkUserService {
     if (image) {
       return `${environment.baseURL}images/${image}`
     }
-    return ''
+    return 'assets/room.jpeg'
   }
 
 
