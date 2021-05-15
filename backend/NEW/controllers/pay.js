@@ -71,8 +71,8 @@ router.get("/admin", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
-     result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
-      response.status(200).json({NewData: result.rows});
+     //result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
+      response.status(200).json(result.rows);
       response.end();
     });
     return done(); // call `done()` to release the client back to the pool
@@ -101,7 +101,7 @@ router.get("/admin/:id", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
-      result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
+      //result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
       response.status(200).json(result.rows);
       response.end();
     });
@@ -123,6 +123,24 @@ router.put("/admin/check", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
+    });
+    return done(); // call `done()` to release the client back to the pool
+  });
+});
+
+router.get("/adminimage", (request, response) => {
+  pool.connect((err, client, done) => {
+    const payid = `SELECT * from pay WHERE image = '${request.body.image}';`;
+    if (err) {
+      return console.error("connection error", err);
+    }
+    client.query(payid, function (err, result) {
+      if (err) {
+        return console.error("error running query", err);
+      }
+      //result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
+      response.status(200).json(result.rows);
+      response.end();
     });
     return done(); // call `done()` to release the client back to the pool
   });
