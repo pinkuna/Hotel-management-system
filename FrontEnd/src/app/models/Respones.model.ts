@@ -46,3 +46,7 @@ export interface UserRes {
     address: string;
 }
 
+export class IDfrome {
+    id: number[]
+}
+
