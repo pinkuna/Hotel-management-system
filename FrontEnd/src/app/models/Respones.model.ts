@@ -55,7 +55,8 @@ export interface PayRes {
     roomnum: number;
     name: string;
     phonenum: number;
-    time: any;
+    time: string;
+    date: string;
     amount: string;
     bank: string;
     image: string;

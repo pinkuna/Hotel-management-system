@@ -30,9 +30,9 @@ export class AdminPayInfoComponent implements OnInit {
   feedData(id: number) {
     this.networkUserService.getPays(id).subscribe(
       data => {
-        var { id, roomnum, name, phonenum, time, amount, bank, image } = { ...data[0] }
+        var { id, roomnum, name, phonenum, time, date, amount, bank, image } = { ...data[0] }
         this.imagePreview = this.networkUserService.getPayImage(image)
-        this.payForm.setValue({ id, roomnum, name, phonenum, time, amount, bank, image })
+        this.payForm.setValue({ id, roomnum, name, phonenum, time, amount, bank, image, date })
       },
       error => {
 

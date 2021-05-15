@@ -23,6 +23,10 @@ td.mat-column-name {
     width: 80px;
 }
 
+.magininfo {
+    margin-bottom: 9px;
+}
+
 .over-lay>img {
     height: 80px;
     object-fit: cover;

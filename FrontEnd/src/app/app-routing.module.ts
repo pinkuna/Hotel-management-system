@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminBookingComponent } from './admin-booking/admin-booking.component';
 import { AdminCheckoutComponent } from './admin-checkout/admin-checkout.component';
+import { AdminPayInfoComponent } from './admin-pay-info/admin-pay-info.component';
 import { AdminPayComponent } from './admin-pay/admin-pay.component';
 import { AdminReportInfoComponent } from './admin-report-info/admin-report-info.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
@@ -67,7 +68,7 @@ const routes: Routes = [
     path: 'admin-pay', component: AdminPayComponent
   },
   {
-    path: 'admin-pay/info/:id', component: AdminReportInfoComponent
+    path: 'admin-pay/info/:id', component: AdminPayInfoComponent
   }
 ];
 

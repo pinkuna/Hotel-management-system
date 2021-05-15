@@ -12,7 +12,7 @@ import { NetworkUserService } from '../services/network-user.service';
 })
 export class AdminPayComponent implements OnInit {
 
-  displayedColumns = ['image', 'name', 'roomnum', 'time', 'amount', 'bank', 'admin_check']
+  displayedColumns = ['image', 'name', 'roomnum', 'time', 'date', 'amount', 'bank', 'admin_check']
 
   dataSource = new MatTableDataSource<PayRes>();
 
