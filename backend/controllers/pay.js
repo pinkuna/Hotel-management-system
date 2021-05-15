@@ -16,6 +16,7 @@ const pool = new pg.Pool({
 
 router.post("/", upload, (request, response) => {
   const lodes = request.body;
+  console.log(lodes)
   upload(request, response, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("error: " + JSON.stringify(err));
@@ -26,6 +27,7 @@ router.post("/", upload, (request, response) => {
     var fileName = request.file.filename;
   if (request.session.loggedin) { //request.session.loggedin
       //response.send(`post product : ${request.params.id},${fileName}`);
+      console.log(lodes)
       let payinsert = {
         text: `insert into pay(roomnum, name, phonenum, time, amount, bank, image, admin_check) values ($1, $2, $3, $4, $5, $6, $7, $8);`,
         values: [
