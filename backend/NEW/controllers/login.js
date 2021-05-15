@@ -24,7 +24,7 @@ router.post("/", (request, response) => {
     var password = request.body.password;
     if (username && password) {
         pool.connect((err, client, done) => {
-            const queryMessage = `SELECT id,username,password,admin FROM register WHERE username = '${username}'`;
+            const queryMessage = `SELECT id,username,password,admin,email,phonenum,usename FROM register WHERE username = '${username}'`;
             if (err) {
                 return console.error("connection error", err);
             }
@@ -35,13 +35,26 @@ router.post("/", (request, response) => {
                     response.status(200).json({ status: 'failed', data: 'Please Register or Invalid username' })
                 } else {
                     const check_password = bcrypt.compareSync(password, data[0].password)
-                    if (check_password) {
+                    if (check_password && data[0].admin) {
+                        response.status(200).json({
+                            status: 'success', data: 'admin Login',
+                            admin: data[0].admin,
+                            usename: data[0].usename,
+                            email: data[0].email,
+                            phoneNum: data[0].phonenum
+                        })
+                    } else if (check_password) {
                         request.session.loggedin = true;
                         request.session.admin = data[0].admin;
                         request.session.username = username;
                         request.session.userid = data[0].id;
-                        response.status(200).json({ status: 'success', data: 'login completed', admin: data[0].admin });
-                        //response.status(200).redirect('/home');
+                        response.status(200).json({
+                            status: 'success', data: 'login completed',
+                            admin: data[0].admin,
+                            usename: data[0].usename,
+                            email: data[0].email,
+                            phoneNum: data[0].phonenum
+                        });
                     } else {
                         request.session.loggedin = false;
                         response.status(200).json({ status: 'failed', data: 'password invalid' });
