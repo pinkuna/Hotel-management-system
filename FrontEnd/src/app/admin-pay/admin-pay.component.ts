@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PayRes } from '../models/Respones.model';
 import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
@@ -11,9 +12,9 @@ import { NetworkUserService } from '../services/network-user.service';
 })
 export class AdminPayComponent implements OnInit {
 
-  displayedColumns = ['image', 'name', 'price', 'stock', 'action']
+  displayedColumns = ['image', 'name', 'roomber', 'time', 'amount', 'bank',]
 
-  dataSource = new MatTableDataSource<>();
+  dataSource = new MatTableDataSource<PayRes>();
 
   textSearch: string;
 
@@ -25,14 +26,14 @@ export class AdminPayComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
-
     this.feedData();
   }
+
   feedData() {
     this.networkUserService.getPay().subscribe(
       data => {
         this.dataSource.data = data.map(item => {
-          item.image = this.networkService.getProductImageURL(item.image)
+          item.image = this.networkUserService.getPayImage(item.image)
           return item;
         })
       },
@@ -58,6 +59,14 @@ export class AdminPayComponent implements OnInit {
   clearSearch() {
     this.textSearch = '';
     this.search(null!)
+  }
+
+  oncheck(id: number) {
+
+  }
+
+  onclickSubmitcheck() {
+
   }
 
 }

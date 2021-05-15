@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Booking } from '../models/booking.model';
 import { checkout } from '../models/Checkout.model';
 import { login } from '../models/login.model';
 import { register } from '../models/register.model';
 import { Report } from '../models/Reports.model';
-import { BookingRes, CheckoutRes, IDfrome, ReportRes, Response, UserRes } from '../models/Respones.model';
+import { BookingRes, CheckoutRes, PayRes, ReportRes, Response, UserRes } from '../models/Respones.model';
 
 @Injectable({
   providedIn: 'root',
@@ -79,12 +80,20 @@ export class NetworkUserService {
       })
   }
 
-  getPay(): Observable<ReportRes[]> {
-    return this.httpClient.get<ReportRes[]>(`pay/admin`,
+  getPay(): Observable<PayRes[]> {
+    return this.httpClient.get<PayRes[]>(`pay/admin`,
       {
         withCredentials: true
       })
   }
+
+  getPayImage(image: string): string {
+    if (image) {
+      return `${environment.baseURL}images/${image}`
+    }
+    return ''
+  }
+
 
   getUseser(): Observable<UserRes[]> {
     return this.httpClient.get<UserRes[]>(`register/admin`,

@@ -46,7 +46,13 @@ export interface UserRes {
     address: string;
 }
 
-export class IDfrome {
-    id: number[]
+export interface PayRes {
+    id: number
+    roomnum: number;
+    name: string;
+    phonenum: number;
+    time: any;
+    amount: string;
+    bank: string;
+    image: string;
 }
-
