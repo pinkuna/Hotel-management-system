@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Booking } from '../models/booking.model';
 import { checkout } from '../models/Checkout.model';
 import { login } from '../models/login.model';
+import { Pay } from '../models/pay.model';
 import { register } from '../models/register.model';
 import { Report } from '../models/Reports.model';
 import { BookingRes, CheckoutRes, PayRes, ReportRes, Response, UserRes } from '../models/Respones.model';
@@ -52,6 +53,13 @@ export class NetworkUserService {
       })
   }
 
+  postpay(pay: Pay): Observable<Response> {
+    return this.httpClient.post<Response>(`checkout`, pay,
+      {
+        withCredentials: true
+      })
+  }
+
   getBooking(): Observable<BookingRes[]> {
     return this.httpClient.get<BookingRes[]>(`booking/admin`,
       {
@@ -82,6 +90,13 @@ export class NetworkUserService {
 
   getPay(): Observable<PayRes[]> {
     return this.httpClient.get<PayRes[]>(`pay/admin`,
+      {
+        withCredentials: true
+      })
+  }
+
+  getPays(id: number): Observable<PayRes[]> {
+    return this.httpClient.get<PayRes[]>(`pay/admin/${id}`,
       {
         withCredentials: true
       })
@@ -119,6 +134,13 @@ export class NetworkUserService {
 
   putreportcheck(id: number[]): Observable<Response> {
     return this.httpClient.put<Response>(`report/admin/check/`, this.makeIDcheck(id),
+      {
+        withCredentials: true
+      })
+  }
+
+  putPaychek(id: number[]): Observable<Response> {
+    return this.httpClient.put<Response>(`pay/admin/check/`, this.makeIDcheck(id),
       {
         withCredentials: true
       })

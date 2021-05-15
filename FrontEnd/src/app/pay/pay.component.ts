@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Pay } from '../models/pay.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-pay',
@@ -16,7 +17,7 @@ export class PayComponent implements OnInit {
   imagePreview: any;
   file: File;
 
-  constructor() { }
+  constructor(private networkUserService: NetworkUserService) { }
 
   ngOnInit(): void {
   }
@@ -49,6 +50,23 @@ export class PayComponent implements OnInit {
     pay.bank = values.bank;
     pay.image = this.file;
     alert(JSON.stringify(pay))
-  }
 
+
+    this.networkUserService.postpay(pay).subscribe(
+      data => {
+        if (data.status == 'success') {
+          alert(data.data)
+        }
+        else {
+          alert(data.data)
+        }
+      },
+      error => {
+        alert(error.error.message);
+      },
+      () => {
+
+      }
+    )
+  }
 }

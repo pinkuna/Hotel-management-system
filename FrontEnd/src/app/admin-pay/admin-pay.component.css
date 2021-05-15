@@ -28,6 +28,14 @@ td.mat-column-action {
     object-fit: cover;
 }
 
+.example-margin {
+    margin: 0 12px;
+}
+
+.example-section {
+    margin: 12px 0;
+}
+
 .over-lay-text {
     background-color: #000;
     position: absolute;

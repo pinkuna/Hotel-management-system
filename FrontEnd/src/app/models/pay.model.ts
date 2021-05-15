@@ -5,5 +5,5 @@ export class Pay {
     time: any;
     amount: string;
     bank: string;
-    image: string;
+    image: File;
 }
