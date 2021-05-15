@@ -37,9 +37,9 @@ router.post("/", (request, response) => {
         false
       ],
     };
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, done) => {w
       if (err) {
-        return console.error("connexion error", err);
+        return console.error("connection error", err);
       }
       client.query(reposts, function (err, result) {
         done();
