@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data.status);
         if (data.status == 'success') {
-          this.stat[0] = JSON.stringify(data.admin)
-          this.stat[1] = JSON.stringify(data.usename)
-          this.stat[2] = JSON.stringify(data.email)
-          this.stat[3] = JSON.stringify(data.phoneNum)
-          alert(this.stat[0])
+          // this.stat[0] = JSON.stringify(data.admin)
+          // this.stat[1] = JSON.stringify(data.usename)
+          // this.stat[2] = JSON.stringify(data.email)
+          // this.stat[3] = JSON.stringify(data.phoneNum)
+          alert(JSON.stringify(data))
           window.location.href = '/'
         } else {
           alert(data.data)

@@ -49,7 +49,8 @@ export class PayComponent implements OnInit {
     pay.amount = values.amount;
     pay.bank = values.bank;
     pay.image = this.file;
-    alert(JSON.stringify(pay))
+    pay.date = values.date;
+    alert(JSON.stringify(pay.image))
 
 
     this.networkUserService.postpay(pay).subscribe(

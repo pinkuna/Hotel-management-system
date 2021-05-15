@@ -5,10 +5,11 @@ const app = express()
 const PORT = process.env.PORT || 8004
 
 // middle ware
-app.use('/images',express.static('images'))
+app.use('/images', express.static('images'))
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:4200"], credentials: true
+    origin: ["http://localhost:4200"],
+    credentials: true
 }))
 app.use(express.urlencoded({ extended: true }))
 app.set('trust proxy', 1)

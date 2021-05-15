@@ -54,10 +54,25 @@ export class NetworkUserService {
   }
 
   postpay(pay: Pay): Observable<Response> {
-    return this.httpClient.post<Response>(`checkout`, pay,
+    return this.httpClient.post<Response>(`pay`, this.makeFormData(pay),
       {
         withCredentials: true
       })
+  }
+
+  makeFormData(pay: Pay): FormData {
+    const formData = new FormData()
+    formData.append('roomNum', `${pay.roomNum}`)
+    formData.append('name', pay.name)
+    formData.append('phoneNum', `${pay.phoneNum}`)
+    formData.append('time', pay.time)
+    formData.append('date', pay.date)
+    formData.append('amount', pay.amount)
+    formData.append('bank', pay.bank)
+    formData.append('image', pay.image)
+    console.log(formData.get('image'));
+
+    return formData
   }
 
   getBooking(): Observable<BookingRes[]> {

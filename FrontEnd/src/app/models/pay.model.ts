@@ -2,8 +2,9 @@ export class Pay {
     roomNum: number;
     name: string;
     phoneNum: number;
-    time: any;
+    time: string;
+    date: string;
     amount: string;
     bank: string;
-    image: File;
+    image: any;
 }
