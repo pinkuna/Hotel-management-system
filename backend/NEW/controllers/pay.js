@@ -101,6 +101,7 @@ router.get("/admin/:id", (request, response) => {
       if (err) {
         return console.error("error running query", err);
       }
+      result.rows.map(element => { element['image'] = `http://localhost:8004/images/${element.image}`});
       response.status(200).json(result.rows);
       response.end();
     });
