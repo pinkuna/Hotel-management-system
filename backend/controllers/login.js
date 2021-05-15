@@ -11,6 +11,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 
 const pg = require("pg");
+const { request, response } = require("express");
+const session = require("express-session");
 const pool = new pg.Pool({
     user: "gwkbzslh",
     host: "arjuna.db.elephantsql.com",
@@ -36,6 +38,10 @@ router.post("/", (request, response) => {
                 } else {
                     const check_password = bcrypt.compareSync(password, data[0].password)
                     if (check_password && data[0].admin) {
+                        request.session.loggedin = true;
+                        request.session.admin = data[0].admin;
+                        request.session.username = username;
+                        request.session.userid = data[0].id;
                         response.status(200).json({
                             status: 'success', data: 'admin Login',
                             admin: data[0].admin,
@@ -56,6 +62,7 @@ router.post("/", (request, response) => {
                             phoneNum: data[0].phonenum
                         });
                     } else {
+                        request.session.admin = false;
                         request.session.loggedin = false;
                         response.status(200).json({ status: 'failed', data: 'password invalid' });
                         //response.status(200).redirect('/login');
