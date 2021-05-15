@@ -24,6 +24,7 @@ const checkoutcon = require('./controllers/checkout')
 const logincon = require('./controllers/login')
 const registercon = require('./controllers/register')
 const reportcon = require('./controllers/report')
+const pay = require('./controllers/pay')
 
 // Controllers
 app.use('/api/booking', bookingcon)
@@ -31,6 +32,7 @@ app.use('/api/checkout', checkoutcon)
 app.use('/api/report', reportcon)
 app.use('/api/login', logincon)
 app.use('/api/register', registercon)
+app.use('/api/pay', pay)
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
