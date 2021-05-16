@@ -63,7 +63,7 @@
             <td mat-cell *matCellDef="let baba" class="text-center">
 
                 <button mat-icon-button [routerLink]="['/admin-report/info', baba.id]">
-                    <mat-icon>info_outline</mat-icon>
+                    <mat-icon class="material-icons-outlined magininfo">info_outline</mat-icon>
                 </button>
 
                 <mat-checkbox *ngIf="!baba.admin_check" class="example-margin" (click)="oncheck(baba.id)">

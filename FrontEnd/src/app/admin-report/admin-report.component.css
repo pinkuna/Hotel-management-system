@@ -28,6 +28,10 @@ td.mat-column-name {
     object-fit: cover;
 }
 
+.magininfo {
+    margin-bottom: 9px;
+}
+
 .over-lay-text {
     background-color: #000;
     position: absolute;

@@ -1,5 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { EmailValidator, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { login } from '../models/login.model';
 import { NetworkUserService } from '../services/network-user.service';
 
@@ -12,13 +13,11 @@ import { NetworkUserService } from '../services/network-user.service';
 
 
 export class LoginComponent implements OnInit {
-  @Output() Iflog: boolean;
 
+  _a: string;
   eye: boolean
 
-
   constructor(private networkUserservice: NetworkUserService) {
-
 
   }
 
@@ -41,12 +40,30 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data.status);
         if (data.status == 'success') {
+          if (data.admin === null || data.admin === false) {
+            this._a = 'useser'
+          } else {
+            this._a = 'admin'
+          }
+          const stats: object = {
+            admin: this._a,
+            email: data.email,
+            phonenum: data.phoneNum,
+            usename: data.usename
+          }
+          const keys = JSON.stringify(stats)
+          localStorage.setItem('_u', keys.toString())
           alert(data.data)
-          window.location.href = '/'
-          this.Iflog = true;
+
+          if (data.admin === true) {
+            window.location.href = '/admin'
+          }
+          else {
+            window.location.href = ''
+          }
+
         } else {
           alert(data.data)
-          this.Iflog = false;
         }
       },
       error => {
@@ -59,5 +76,6 @@ export class LoginComponent implements OnInit {
     console.log(this.eye);
 
   }
+
 }
 

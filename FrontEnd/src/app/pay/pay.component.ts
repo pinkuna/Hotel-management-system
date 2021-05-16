@@ -1,25 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Pay } from '../models/pay.model';
+import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
   selector: 'app-pay',
   templateUrl: './pay.component.html',
   styleUrls: ['./pay.component.css']
 })
+
+
 export class PayComponent implements OnInit {
 
-  valueName: string = 'Jetniphan'
-  valueRoomnum: string = '204'
-  valuePhone: string = '123456789'
+  valueName: string
+  valueRoomnum: number
+  valuePhone: number
 
   imagePreview: any;
   file: File;
 
-  constructor() { }
+
+  constructor(private networkUserService: NetworkUserService) { }
 
   ngOnInit(): void {
+    const stats = JSON.parse(localStorage.getItem('_u') || '{}')
+    this.valueName = stats.usename
+    this.valuePhone = stats.phonenum
+    console.log(this.valueRoomnum);
   }
+
+
 
   onPreview(event: any) {
     const metaImage = event.target.files[0];
@@ -48,7 +58,25 @@ export class PayComponent implements OnInit {
     pay.amount = values.amount;
     pay.bank = values.bank;
     pay.image = this.file;
-    alert(JSON.stringify(pay))
-  }
+    pay.date = values.date;
+    alert(JSON.stringify(pay.image))
 
+
+    this.networkUserService.postpay(pay).subscribe(
+      data => {
+        if (data.status == 'success') {
+          alert(data.data)
+        }
+        else {
+          alert(data.data)
+        }
+      },
+      error => {
+        alert(error.error.message);
+      },
+      () => {
+
+      }
+    )
+  }
 }

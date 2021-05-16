@@ -13,12 +13,17 @@ export class BookingComponent implements OnInit {
 
   constructor(private networkUserservice: NetworkUserService) { }
 
-  valueName: string = 'Jetniphan'
+  valueName: string
   valueIDcard: string = '1234567890123'
-  valuePhone: number = 123456789
-  valueEmial: string = 'jeni8399@gmail.com'
+  valuePhone: number
+  valueEmial: string
 
   ngOnInit(): void {
+    const stats = JSON.parse(localStorage.getItem('_u') || '{}')
+    this.valueName = stats.usename
+    this.valuePhone = stats.phonenum
+    this.valueEmial = stats.email
+    console.log();
   }
 
   onSubmit(reportForm: NgForm) {

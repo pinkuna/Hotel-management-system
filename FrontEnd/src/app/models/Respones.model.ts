@@ -1,6 +1,10 @@
 export interface Response {
     data: string;
     status: string;
+    admin: boolean;
+    usename: string;
+    email: string;
+    phoneNum: number;
 }
 
 export interface BookingRes {
@@ -46,7 +50,14 @@ export interface UserRes {
     address: string;
 }
 
-export class IDfrome {
-    id: number[]
+export interface PayRes {
+    id: number
+    roomnum: number;
+    name: string;
+    phonenum: number;
+    time: string;
+    date: string;
+    amount: string;
+    bank: string;
+    image: string;
 }
-

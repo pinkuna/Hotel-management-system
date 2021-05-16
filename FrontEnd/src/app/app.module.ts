@@ -44,6 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AdminUsermangeComponent } from './admin-usermange/admin-usermange.component';
 import { AdminReportInfoComponent } from './admin-report-info/admin-report-info.component';
 import { AdminPayComponent } from './admin-pay/admin-pay.component';
+import { AdminPayInfoComponent } from './admin-pay-info/admin-pay-info.component';
 
 
 
@@ -69,7 +70,8 @@ import { AdminPayComponent } from './admin-pay/admin-pay.component';
     AdminCheckoutComponent,
     AdminUsermangeComponent,
     AdminReportInfoComponent,
-    AdminPayComponent
+    AdminPayComponent,
+    AdminPayInfoComponent
   ],
   imports: [
     BrowserModule,
