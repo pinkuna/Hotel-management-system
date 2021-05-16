@@ -38,5 +38,6 @@ export class HeaderComponent implements OnInit {
   clickLogout() {
     localStorage.clear()
     this.Iflog = false
+    window.location.href = ''
   }
 }
