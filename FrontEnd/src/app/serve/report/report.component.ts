@@ -16,11 +16,16 @@ export class ReportComponent implements OnInit {
 
   constructor(private networtUserservice: NetworkUserService) { }
 
-  valueName: string = 'Jetniphan'
+  valueName: string
   valueRoomnum: string = '204'
-  valuePhone: string = '123456789'
+  valuePhone: number
 
   ngOnInit(): void {
+
+    const stats = JSON.parse(localStorage.getItem('_u') || '{}')
+    this.valueName = stats.usename
+    this.valuePhone = stats.phonenum
+    console.log(this.valueRoomnum);
   }
 
   onSubmit(reportForm: NgForm) {

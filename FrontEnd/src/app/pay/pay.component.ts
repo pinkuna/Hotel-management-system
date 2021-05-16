@@ -8,19 +8,28 @@ import { NetworkUserService } from '../services/network-user.service';
   templateUrl: './pay.component.html',
   styleUrls: ['./pay.component.css']
 })
+
+
 export class PayComponent implements OnInit {
 
-  valueName: string = 'Jetniphan'
-  valueRoomnum: string = '204'
-  valuePhone: string = '123456789'
+  valueName: string
+  valueRoomnum: number
+  valuePhone: number
 
   imagePreview: any;
   file: File;
 
+
   constructor(private networkUserService: NetworkUserService) { }
 
   ngOnInit(): void {
+    const stats = JSON.parse(localStorage.getItem('_u') || '{}')
+    this.valueName = stats.usename
+    this.valuePhone = stats.phonenum
+    console.log(this.valueRoomnum);
   }
+
+
 
   onPreview(event: any) {
     const metaImage = event.target.files[0];

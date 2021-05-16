@@ -1,7 +1,9 @@
 <mat-toolbar color="primary" class="example-spacer">
-    <div (click)="onClickNavToggle()"><button *ngIf="mobileQueryMax" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <div (click)="onClickNavToggle()">
+        <button *ngIf="mobileQueryMax" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
-        </button></div>
+        </button>
+    </div>
 
     <button mat-button *ngIf="!mobileQueryMax" [routerLink]="['']">
         <span class="mat-h1 font-header">Dragon Hotel</span>
@@ -12,7 +14,7 @@
     </button>
 
 
-    <div *ngIf="!mobileQueryMax">
+    <div *ngIf="!mobileQueryMax && !admin">
         <button class="font-menu" mat-button [routerLink]="['/news']">News</button>
         <button class="font-menu" mat-button [routerLink]="['booking']">Booking</button>
         <button class="font-menu" mat-button [matMenuTriggerFor]="menu">Service</button>
