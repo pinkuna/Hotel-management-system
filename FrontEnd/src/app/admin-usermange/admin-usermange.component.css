@@ -79,6 +79,14 @@ td.mat-cell {
     }
 }
 
-table {
+.table {
     width: 100%;
+}
+
+.example-margin {
+    margin: 0 12px;
+}
+
+.example-section {
+    margin: 12px 0;
 }

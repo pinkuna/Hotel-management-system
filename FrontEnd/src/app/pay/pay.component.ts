@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Pay } from '../models/pay.model';
 import { NetworkUserService } from '../services/network-user.service';
@@ -12,23 +12,23 @@ import { NetworkUserService } from '../services/network-user.service';
 
 export class PayComponent implements OnInit {
 
-  valueName: string
-  valueRoomnum: number
-  valuePhone: number
-
   imagePreview: any;
   file: File;
 
-
   constructor(private networkUserService: NetworkUserService) { }
+
+  @ViewChild('payForm', { static: true }) PayForm: NgForm
 
   ngOnInit(): void {
     const stats = JSON.parse(localStorage.getItem('_u') || '{}')
-    this.valueName = stats.usename
-    this.valuePhone = stats.phonenum
-    console.log(this.valueRoomnum);
+    var { roomnum, phonenum, usename, time, date, amount, bank, image } = {
+      phonenum: stats.phonenum, usename: stats.usename, roomnum: '', time: '', date: '', amount: ''
+      , bank: '', image: ''
+    }
+    setTimeout(() => {
+      this.PayForm.setValue({ roomnum, phonenum, usename, time, date, amount, bank, image })
+    })
   }
-
 
 
   onPreview(event: any) {
@@ -51,9 +51,9 @@ export class PayComponent implements OnInit {
 
     const values = payForm.value;
     let pay = new Pay();
-    pay.roomNum = values.roomNum;
-    pay.name = values.name;
-    pay.phoneNum = values.phoneNum;
+    pay.roomNum = values.roomnum;
+    pay.name = values.usename;
+    pay.phoneNum = values.phonenum;
     pay.time = values.time;
     pay.amount = values.amount;
     pay.bank = values.bank;

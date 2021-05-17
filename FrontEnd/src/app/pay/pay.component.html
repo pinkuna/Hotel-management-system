@@ -25,14 +25,14 @@
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label class="font">Room Number</mat-label>
-                        <input [(ngModel)]="valueRoomnum" name="roomNum" matInput type="number" required>
+                        <input ngModel name="roomnum" matInput type="number" required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label class="font">Full Name</mat-label>
-                        <input [(ngModel)]="valueName" name="name" matInput required>
+                        <input ngModel name="usename" matInput required>
                     </mat-form-field>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <mat-form-field class="w-100 font" appearance="outline">
                         <mat-label>Phone Number</mat-label>
                         <span matPrefix class="font">+66 &nbsp;</span>
-                        <input [(ngModel)]="valuePhone" name="phoneNum" matInput type="number" required>
+                        <input ngModel name="phonenum" matInput type="number" required>
                     </mat-form-field>
                 </div>
 
@@ -86,7 +86,7 @@
                         <mat-icon>photo</mat-icon>
                         <span>Selec Image</span>
                     </button>
-                    <input ngModel (change)="onPreview($event)" #fileInput type="file" accept="image/*">
+                    <input ngModel (change)="onPreview($event)" #fileInput type="file" accept="image/*" name="image">
                 </div>
             </div>
         </mat-card-content>

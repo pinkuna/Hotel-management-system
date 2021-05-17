@@ -20,12 +20,12 @@ export class RootGuard implements CanActivate {
         return true
       }
       if (stats.admin === 'useser' && _c[0] === 'admin') {
-        alert(`ไม่มีสิทธิ์เข้าหน้า Admin`)
+        alert(`Not permission access`)
         window.location.href = ''
         return false
       }
     }
-    alert(`plase loing`)
+    alert(`Please sign in or sign up `)
     window.location.href = '/login'
     return false
 
