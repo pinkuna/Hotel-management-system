@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "cli": {
-      "analytics": "3a0a5752-5419-44e7-9452-c30b35f3b9b4"
+        "analytics": "3a0a5752-5419-44e7-9452-c30b35f3b9b4"
     },
     "version": 1,
     "newProjectRoot": "projects",
@@ -35,7 +35,8 @@
                             "src/styles.css",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css"
                         ],
-                        "scripts": ["./node_modules/jquery/dist/jquery.min.js",
+                        "scripts": [
+                            "./node_modules/jquery/dist/jquery.min.js",
                             "./node_modules/bootstrap/dist/js/bootstrap.min.js"
                         ]
                     },
@@ -54,8 +55,8 @@
                             "buildOptimizer": true,
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
