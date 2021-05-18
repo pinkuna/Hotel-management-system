@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const Material = [MatToolbarModule,
   MatIconModule,
@@ -33,6 +35,8 @@ const Material = [MatToolbarModule,
   MatTableModule,
   MatPaginatorModule,
   MatCheckboxModule,
+  MatSnackBarModule,
+  MatProgressSpinnerModule,
   CommonModule]
 
 @NgModule({

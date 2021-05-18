@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoadingService } from '../services/loading.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,5 +14,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
 }

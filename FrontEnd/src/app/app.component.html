@@ -5,6 +5,7 @@
     <mat-sidenav-content>
         <app-header [medie_query]="mobileQueryMax.matches" (toggle)="sidenav.toggle()"></app-header>
         <div class="content">
+            <app-progress [mode]="'indeterminate'"></app-progress>
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

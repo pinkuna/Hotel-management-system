@@ -1,5 +1,5 @@
 <mat-card>
-    <form #reportForm="ngForm" (submit)="onSubmit(reportForm)">
+    <form #bookingForm="ngForm" (submit)="onSubmit(bookingForm)">
         <mat-card-header>
             <mat-card-title class="d-flex justify-content-between aling-items-center">
                 <span>Booking</span>
@@ -12,21 +12,21 @@
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Full Name</mat-label>
-                        <input [(ngModel)]="valueName" name="name" matInput required>
+                        <input ngModel name="name" matInput required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>ID Card</mat-label>
-                        <input [(ngModel)]="valueIDcard" name="idcard" matInput type="number" required>
+                        <input ngModel name="idcard" matInput type="number" required>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input [(ngModel)]="valueEmial" type="email" matInput name="email" placeholder="Ex. pat@example.com">
+                        <input ngModel type="email" matInput name="email" placeholder="Ex. pat@example.com">
                     </mat-form-field>
                 </div>
 
@@ -34,7 +34,7 @@
                     <mat-form-field class="w-100">
                         <mat-label>Phone Number</mat-label>
                         <span matPrefix>+66 &nbsp;</span>
-                        <input [(ngModel)]="valuePhone" name="phoneNum" matInput type="number" required>
+                        <input ngModel name="phonenum" matInput type="number" required>
                     </mat-form-field>
                 </div>
 

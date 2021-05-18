@@ -81,7 +81,6 @@ export class AdminBookingComponent implements OnInit {
       this.networkUserservic.putbookingcheck(this.checklist).subscribe(
         data => {
           if (data.status == 'success') {
-            alert(data.data)
             window.location.href = '/admin-booking'
           }
           else {

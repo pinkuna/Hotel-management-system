@@ -13,7 +13,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private networkUserservice: NetworkUserService) { }
 
   valueName: string
-  valueRoomnum: string = '204'
+  valueRoomnum: string
   valuePhone: number
 
   ngOnInit(): void {
@@ -39,13 +39,16 @@ export class CheckoutComponent implements OnInit {
       data => {
         if (data.status == 'success') {
           alert(`Summit Complete`)
-          // window.location.href = '/'
+          window.location.href = '/'
         } else {
           alert(data.data)
+          window.location.href = 'serve/checkout'
         }
       },
       error => {
-        alert(status)
+        alert(`Error 404`)
+        window.location.href = 'serve/checkout'
+
       }
     )
 

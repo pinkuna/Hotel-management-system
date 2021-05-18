@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Booking } from '../models/booking.model';
@@ -13,17 +13,22 @@ export class BookingComponent implements OnInit {
 
   constructor(private networkUserservice: NetworkUserService) { }
 
-  valueName: string
-  valueIDcard: string = '1234567890123'
-  valuePhone: number
-  valueEmial: string
+  @ViewChild('bookingForm', { static: true }) bookingForm: NgForm
+
 
   ngOnInit(): void {
     const stats = JSON.parse(localStorage.getItem('_u') || '{}')
-    this.valueName = stats.usename
-    this.valuePhone = stats.phonenum
-    this.valueEmial = stats.email
-    console.log();
+
+    var { name, idcard, email, phonenum, date } = {
+      name: stats.usename,
+      idcard: '',
+      email: stats.email,
+      phonenum: stats.phonenum,
+      date: ''
+    }
+    setTimeout(() => {
+      this.bookingForm.setValue({ name, idcard, email, phonenum, date })
+    })
   }
 
   onSubmit(reportForm: NgForm) {
@@ -37,22 +42,24 @@ export class BookingComponent implements OnInit {
     booking.name = values.name;
     booking.idcard = values.idcard;
     booking.email = values.email;
-    booking.phoneNum = values.phoneNum;
+    booking.phoneNum = values.phonenum;
     booking.date = values.date;
     booking.roomNum = values.roomNum;
-
-    if (booking.idcard.length === 13 && booking.phoneNum.toString().length === 9) {
+    if (booking.idcard.toString().length == 13 && booking.phoneNum.toString().length == 9) {
       this.networkUserservice.postbooking(booking).subscribe(
         data => {
           console.log(data.status);
           if (data.status == 'success') {
-            alert(data.data)
+            alert(`Booking Success`)
             window.location.href = '/'
           } else {
             alert(data.data)
+            window.location.href = '/login'
           }
         },
         error => {
+          alert(`Error 404`)
+          window.location.href = '/booking'
         })
     } else {
       alert(`Form incorrect`)

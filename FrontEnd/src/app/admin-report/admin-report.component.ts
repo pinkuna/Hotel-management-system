@@ -79,7 +79,6 @@ export class AdminReportComponent implements OnInit {
       this.networkUserService.putreportcheck(this.checklist).subscribe(
         data => {
           if (data.status == 'success') {
-            alert(data.data)
             window.location.href = '/admin-report'
           }
           else {

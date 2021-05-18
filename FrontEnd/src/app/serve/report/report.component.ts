@@ -46,10 +46,14 @@ export class ReportComponent implements OnInit {
       data => {
         if (data.status == 'success') {
           alert(`Submit Report`)
+          window.location.href = '/'
         } else {
           alert(data.data)
+          window.location.href = 'serve/report'
         }
       }, erorr => {
+        alert(`Error 404`)
+        window.location.href = 'serve/report'
 
       }
 

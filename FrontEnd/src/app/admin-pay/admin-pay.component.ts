@@ -90,7 +90,6 @@ export class AdminPayComponent implements OnInit {
       this.networkUserService.putPaychek(this.checklist).subscribe(
         data => {
           if (data.status == 'success') {
-            alert(data.data)
             window.location.href = '/admin-pay'
           }
           else {

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Pay } from '../models/pay.model';
+import { LoadingService } from '../services/loading.service';
 import { NetworkUserService } from '../services/network-user.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class PayComponent implements OnInit {
   @ViewChild('payForm', { static: true }) PayForm: NgForm
 
   ngOnInit(): void {
+
     const stats = JSON.parse(localStorage.getItem('_u') || '{}')
     var { roomnum, phonenum, usename, time, date, amount, bank, image } = {
       phonenum: stats.phonenum, usename: stats.usename, roomnum: '', time: '', date: '', amount: ''
@@ -59,16 +61,17 @@ export class PayComponent implements OnInit {
     pay.bank = values.bank;
     pay.image = this.file;
     pay.date = values.date;
-    alert(JSON.stringify(pay.image))
 
 
     this.networkUserService.postpay(pay).subscribe(
       data => {
         if (data.status == 'success') {
-          alert(data.data)
+          alert(`Submit Success`)
+          window.location.href = ''
         }
         else {
           alert(data.data)
+          window.location.href = '/login'
         }
       },
       error => {

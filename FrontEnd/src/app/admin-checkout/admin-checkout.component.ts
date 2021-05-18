@@ -81,7 +81,6 @@ export class AdminCheckoutComponent implements OnInit {
       this.networkUserService.putcheckoutcheck(this.checklist).subscribe(
         data => {
           if (data.status == 'success') {
-            alert(data.data)
             window.location.href = '/admin-checkout'
           }
           else {
