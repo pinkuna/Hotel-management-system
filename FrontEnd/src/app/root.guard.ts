@@ -14,8 +14,8 @@ export class RootGuard implements CanActivate {
     const stats = JSON.parse(localStorage.getItem('_u') || '{}')
     const _c: string[] = route.data.role.split(',')
 
-    if (!stats) {
-      console.log(stats.admin);
+    console.log(stats.admin);
+    if (stats.admin !== undefined) {
       if (stats.admin === _c[0] || stats.admin === _c[1]) {
         return true
       }
