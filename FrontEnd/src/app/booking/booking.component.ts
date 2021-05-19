@@ -31,13 +31,13 @@ export class BookingComponent implements OnInit {
     })
   }
 
-  onSubmit(reportForm: NgForm) {
-    if (reportForm.invalid) {
+  onSubmit(bookingForm: NgForm) {
+    if (bookingForm.invalid) {
       //return console.log(`Error`);
       ;
     }
 
-    const values = reportForm.value;
+    const values = bookingForm.value;
     let booking = new Booking();
     booking.name = values.name;
     booking.idcard = values.idcard;
